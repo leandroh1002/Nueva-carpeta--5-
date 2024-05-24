@@ -16,7 +16,7 @@ function Home() {
     console.log(allPublishes)
 
   return (
-    <div class="flex justify-center flex-wrap m-8">
+    <div className="flex justify-center flex-wrap m-8">
         {allPublishes.map((user) => <Card key={user.idPublish} {...user}/>)}
     </div>
   )
