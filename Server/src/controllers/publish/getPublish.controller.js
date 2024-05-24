@@ -1,11 +1,19 @@
 const { getPublishService } = require('../../services/people/getPeople.service.js');
-const { Publish , Companies} = require("../../db.js");
-
+const { Publish, Companies, Carrer } = require("../../db.js");
 
 const getPublishController = async (req, res) => {
     try {
         const publishes = await Publish.findAll({
-            include: Companies
+            include: [
+                {
+                    model: Companies,
+                    attributes: ['idCompanies', 'name', 'description', 'image', 'duration']
+                },
+                {
+                    model: Carrer,
+                    attributes: ['idCarrer', 'name', 'description', 'duration']
+                }
+            ]
         });
 
         res.status(200).json(publishes);
@@ -14,4 +22,5 @@ const getPublishController = async (req, res) => {
         res.status(500).json({ error: "Hubo un error al procesar la solicitud" });
     }
 };
+
 module.exports = { getPublishController };
