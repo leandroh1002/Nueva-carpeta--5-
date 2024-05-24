@@ -10,7 +10,7 @@ function Details() {
     useEffect(() => {
         axios(`/publish/${id}`).then(({ data }) => {
             console.log(data)
-           if (data.namePublish) {
+           if (data.idPublish) {
               setCountries(data);
            } else {
               window.alert('No hay publicaciones con ese ID');
@@ -24,13 +24,14 @@ function Details() {
     <div>
         <p>{countries.namePublish}</p>
         <hr />
-        <h3>Sos estudiante avanzado de </h3> <p>{countries.carrer}?</p>
-        <p>Unite al equipo de {countries.enterprise}</p>
-        <p>{countries.perfilDescription}</p>
-        <h4>Algunas tareas a realizar</h4>
+        <h3>Sos estudiante avanzado de {countries.Carrers && countries.Carrers.length > 0 && countries.Carrers[0].name}?</h3> 
+        <p>Unite al equipo de {countries.Companies && countries.Companies.length > 0 && countries.Companies[0].name}</p>
+        <p>{countries.description}</p>
+        <h4>Algunas tareas a realizar:</h4>
         <p>{countries.task}</p>
         <h4>Ofrecemos</h4>
         <p>{countries.offer}</p>
+        <p>{countries.location}</p>
         <p>{countries.otherDescription} a: pasantias@unsta.edu.ar</p>
     </div>
   )
