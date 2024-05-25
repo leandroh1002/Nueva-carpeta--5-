@@ -8,6 +8,7 @@ import NavBar from "./components/NavBar.jsx";
 import Hero from "./components/Hero.jsx";
 import Testimonials from "./components/Testimonials.jsx";
 import Login from "./components/Login.jsx";
+import FormAddCompanies from "./components/FormAddCompanies.jsx";
 const REACT_APP_API_URL = import.meta.env.VITE_BASE_URL;
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Route path={PATHROUTES.HOME} element={<Home />} />
         <Route path={PATHROUTES.DETAIL} element={<Details />} />
         <Route path={PATHROUTES.LOGIN} element={<Login />} />
+        <Route path={PATHROUTES.FORM_ADD_COMPANIES} element={<FormAddCompanies />} />
       </Routes>
 
       {/* Conditionally render Testimonials */}

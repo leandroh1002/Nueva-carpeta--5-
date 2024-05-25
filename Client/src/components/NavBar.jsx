@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import PATHROUTES from "../helpers/PathRoutes.helper";
+
 
 function NavBar() {
   const location = useLocation();
@@ -18,7 +20,16 @@ function NavBar() {
         <a href="https://alumnos.unsta.edu.ar/" className="mr-5 hover:text-gray-900 cursor-pointer">Autogestion</a>
         <a href="https://seo.unsta.edu.ar/" className="mr-5 hover:text-gray-900 cursor-pointer">CEO</a>
       </nav>
-      {location.pathname !== '/login' && <Link to={`/login`}><button className="inline-flex items-center bg-[#ca7d10] border-0 py-1 px-3 focus:outline-none hover:bg-[#ca7d10] rounded text-base mt-4 md:mt-0">Login
+
+      {/* <--------Boton para agregar empresas------> */}
+      {location.pathname === PATHROUTES.FORM_ADD_COMPANIES && <button className="inline-flex items-center bg-[#ca7d10] border-0 py-1 px-3 focus:outline-none hover:bg-[#ca7d10] rounded text-base mt-4 md:mt-0">Add Companies
+        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-4 h-4 ml-1" viewBox="0 0 24 24">
+          <path d="M5 12h14M12 5l7 7-7 7"></path>
+        </svg>
+      </button>}
+      
+      {/* <--------Boton de Login------> */}
+      {location.pathname === PATHROUTES.HOME && <Link to={PATHROUTES.LOGIN}><button className="inline-flex items-center bg-[#ca7d10] border-0 py-1 px-3 focus:outline-none hover:bg-[#ca7d10] rounded text-base mt-4 md:mt-0">Login
         <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-4 h-4 ml-1" viewBox="0 0 24 24">
           <path d="M5 12h14M12 5l7 7-7 7"></path>
         </svg>
