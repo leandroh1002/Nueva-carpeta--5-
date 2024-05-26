@@ -22,11 +22,12 @@ function NavBar() {
       </nav>
 
       {/* <--------Boton para agregar empresas------> */}
-      {location.pathname === PATHROUTES.FORM_ADD_COMPANIES && <button className="inline-flex items-center bg-[#ca7d10] border-0 py-1 px-3 focus:outline-none hover:bg-[#ca7d10] rounded text-base mt-4 md:mt-0">Add Companies
-        {/* <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4 ml-1" viewBox="0 0 24 24">
-          <path d="M5 12h14M12 5l7 7-7 7"></path>
-        </svg> */}
+      {location.pathname === PATHROUTES.FORM_ADD_COMPANIES && <button className="inline-flex items-center bg-[#ca7d10] border-0 py-1 px-3 focus:outline-none hover:bg-[#ca7d10] rounded text-base mt-4 md:mt-0">
+      Agregar Empresas
+        <svg className='ml-2 icon icon-tabler icons-tabler-outline icon-tabler-plus'  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  strokeWidth="2"  strokeLinecap="round"  strokeLinejoin="round" ><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg>
       </button>}
+
+
       
       {/* <--------Boton de Login------> */}
       {location.pathname === PATHROUTES.HOME && <Link to={PATHROUTES.LOGIN}><button className="inline-flex items-center bg-[#ca7d10] border-0 py-1 px-3 focus:outline-none hover:bg-[#ca7d10] rounded text-base mt-4 md:mt-0">Login
