@@ -1,54 +1,77 @@
 import React, { useState } from 'react'
 import { Formik , Form, Field, ErrorMessage } from 'formik'
+import ButtonDefault from "./ButtonDefault"
+import axios from 'axios';
+const REACT_APP_API_URL = import.meta.env.VITE_BASE_URL;
+
 
 function FormAddCompanies() {
     const [success, setSuccess] = useState(false)
+
+
+
   return (
-
-
     <>
         <Formik //esto es para que formik maneje el sumbit sin el handlesubmit 
             initialValues={{
-                nombre: '',
-                descripcion: '',
-                imagen: '',
-                duracion: '',
+                name: '',
+                description: '',
+                image: '',
+                duration: '',
             }}
             validate={(valores) =>{ //aqui van todas las validaciones
                 let errores = {}
 
                 //validacion nombre
-                if(!valores.nombre){
-                    errores.nombre = 'ingresa un nombre'
-                } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(valores.nombre)){
-                    errores.nombre = 'el nombre solo puede tener letras y espacions'
+                if(!valores.name){
+                    errores.name = 'ingresa un nombre'
+                } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(valores.name)){
+                    errores.name = 'el nombre solo puede tener letras y espacions'
                 }
 
-                //validacion de la descripcion
-                if(!valores.descripcion){
-                    errores.descripcion = 'ingresa una descripcion'
-                } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(valores.descripcion)){
-                    errores.descripcion = 'aqui va el correo men'
+                //validacion de la description
+                if(!valores.description){
+                    errores.description = 'ingresa una description'
+                } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(valores.description)){
+                    errores.description = 'aqui va el correo men'
                 }
 
-                //validacion de la imagen
-                if(!valores.imagen){
-                    errores.imagen = 'ingresa un mail'
-                } else if (!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(valores.imagen)){
-                    errores.imagen = 'aqui va el correo men'
+                //validacion de la image
+                if(!valores.image){
+                    errores.image = 'ingresa un mail'
+                } else if (!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(valores.image)){
+                    errores.image = 'aqui va el correo men'
                 }
 
-                //validacion de la duracion
-                if(!valores.duracion){
-                    errores.duracion = 'aqui va la duracion de la pasantia'
-                } else if (!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(valores.duracion)){
-                    errores.duracion = 'solo numeros'
+                //validacion de la duration
+                if(!valores.duration){
+                    errores.duration = 'aqui va la duration de la pasantia'
+                } else if (!/[a-zA-Z0-9-.]+$/.test(valores.duration)){
+                    errores.duration = 'solo numeros'
                 }
                 return errores
             }} 
             onSubmit={(valores, {resetForm}) =>{
                 resetForm()
                 console.log('formulario enviado' , valores)
+                
+                axios.post(`${REACT_APP_API_URL}/companies`, valores)
+                .then((response) => {
+                  if (response.status === 201 || response.status === 200) {
+                    // dispatch({
+                    //   type: SET_SELECTED_OPPORTUNITIE,
+                    //   payload: {
+                    //     idOpportunitie: response.data.idOpportunitie
+                    //   }
+                    // })
+                    // navigate(Helpers.UserDetail.replace(":id", props.user.idPeople))
+                    console.log("todo ok", response)
+                  }
+                })
+                .catch((error) => {
+                    console.log(error)
+                });
+
                 setSuccess(true)
                 setTimeout(() => setSuccess(false), 5000)
             }}
@@ -57,49 +80,49 @@ function FormAddCompanies() {
             // El Form de formik es quien se encarga de enviar el formulario
             <Form className=''>
                 <div>
-                    <label htmlFor="nombre">Nombre: </label>
+                    <label htmlFor="name">Nombre: </label>
                     {/* el Fiel maneja los datos del formulario, se encarga de enviar a formik las validaciones del input */}
                     <Field 
                         type="text" 
-                        id='nombre' 
-                        name='nombre' 
+                        id='name' 
+                        name='name' 
                         placeholder='aqui va el nombre'
                         />
                     {/* este maneja solo los errores, con los datos definidos mas arriba */}
-                    <ErrorMessage name='nombre' component={() => (<div className='error'>{errors.nombre}</div>)}/>
+                    <ErrorMessage name='name' component={() => (<div className='error'>{errors.name}</div>)}/>
                 </div>
 
                 <div>
-                    <label htmlFor="descripcion">Descripcion: </label>
+                    <label htmlFor="description">Description: </label>
                     <Field 
                     type="text" 
-                    id='descripcion' 
-                    name='descripcion' 
-                    placeholder='aqui va la descripcion'
+                    id='description' 
+                    name='description' 
+                    placeholder='aqui va la description'
                     />
-                    <ErrorMessage name='descripcion' component={() => (<div className='error'>{errors.descripcion}</div>)}/>
+                    <ErrorMessage name='description' component={() => (<div className='error'>{errors.description}</div>)}/>
                 </div>
                 <div>
-                    <label htmlFor="imagen">Imagen: </label>
+                    <label htmlFor="image">Image: </label>
                     <Field 
                     type="text" 
-                    id='imagen' 
-                    name='imagen' 
-                    placeholder='aqui na el imagen'
+                    id='image' 
+                    name='image' 
+                    placeholder='aqui na el image'
                     />
-                    <ErrorMessage name='imagen' component={() => (<div className='error'>{errors.imagen}</div>)}/>
+                    <ErrorMessage name='image' component={() => (<div className='error'>{errors.image}</div>)}/>
                 </div>
                 <div>
-                    <label htmlFor="duracion">Duracion: </label>
+                    <label htmlFor="duration">Duration: </label>
                     <Field 
-                    type="text" 
-                    id='duracion' 
-                    name='duracion' 
-                    placeholder='aqui na el duracion'
+                    type="number" 
+                    id='duration' 
+                    name='duration' 
+                    placeholder='aqui na el duration'
                     />
-                    <ErrorMessage name='duracion' component={() => (<div className='error'>{errors.duracion}</div>)}/>
+                    <ErrorMessage name='duration' component={() => (<div className='error'>{errors.duration}</div>)}/>
                 </div>
-                <button type='submit'>Enviar</button>
+                <ButtonDefault type='submit' props="Enviar"></ButtonDefault>
             </Form>
         )}
     </Formik>
