@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import ButtonDefault from '../ButtonDefault';
 
 
-function Card({idPublish, namePublish, carrer, enterprise, image, offer, task, otherDescription, perfilDecription }) {
+function Card({idPublish, location, carrer, enterprise, image, offer, task, otherDescription, perfilDecription }) {
 
   return (
     <div className='m-3 relative grid h-[40rem] w-full max-w-[28rem] flex-col items-end justify-center overflow-hidden rounded-xl bg-red-500 bg-clip-border text-center text-gray-700'>
@@ -13,7 +13,8 @@ function Card({idPublish, namePublish, carrer, enterprise, image, offer, task, o
         </div>
         <div className="relative p-6 px-6 py-14 md:px-12">
             <h2 className="mb-6 block font-sans text-4xl font-medium leading-[1.5] tracking-normal text-white antialiased">
-        <p>{namePublish}</p>
+        <p>
+          Pasante de {location}</p>
             {/* {carrer} */}
             </h2>
             <h5 className="block mb-4 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-gray-400">
