@@ -1,4 +1,5 @@
 const { DataTypes } = require('sequelize');
+
 module.exports = (sequelize) => {
   sequelize.define('Carrer', {
     idCarrer: {
@@ -26,6 +27,7 @@ module.exports = (sequelize) => {
     isDeleted: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
+      defaultValue: false, // Valor por defecto establecido aquí
     },
-  } , { timestamps: false });
+  }, { timestamps: false });
 };
