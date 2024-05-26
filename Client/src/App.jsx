@@ -10,6 +10,7 @@ import Testimonials from "./components/Testimonials.jsx";
 import Login from "./components/Login.jsx";
 import FormAddCompanies from "./components/FormAddCompanies.jsx";
 import FormAddCarrer from "./components/FormAddCarrer.jsx";
+import FormAddPublish from "./components/FormAddPublish.jsx";
 
 const REACT_APP_API_URL = import.meta.env.VITE_BASE_URL;
 
@@ -30,6 +31,7 @@ function App() {
         <Route path={PATHROUTES.LOGIN} element={<Login />} />
         <Route path={PATHROUTES.FORM_ADD_COMPANIES} element={<FormAddCompanies />} />
         <Route path={PATHROUTES.FORM_ADD_CARRER} element={<FormAddCarrer />} />
+        <Route path={PATHROUTES.PUBLISH} element={<FormAddPublish />} />
       </Routes>
 
       {/* Conditionally render Testimonials */}
