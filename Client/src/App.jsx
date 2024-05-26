@@ -27,6 +27,7 @@ function App() {
         <Route path={PATHROUTES.DETAIL} element={<Details />} />
         <Route path={PATHROUTES.LOGIN} element={<Login />} />
         <Route path={PATHROUTES.FORM_ADD_COMPANIES} element={<FormAddCompanies />} />
+        <Route path={PATHROUTES.FORM_ADD_CARRER} element={<FormAddCarrer />} />
       </Routes>
 
       {/* Conditionally render Testimonials */}
