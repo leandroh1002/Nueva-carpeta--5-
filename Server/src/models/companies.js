@@ -26,6 +26,7 @@ module.exports = (sequelize) => {
     isDeleted: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
+      defaultValue: false,
     },
   } , { timestamps: false });
 };
