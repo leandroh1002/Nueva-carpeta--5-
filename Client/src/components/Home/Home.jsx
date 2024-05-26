@@ -17,8 +17,13 @@ function Home() {
 
   return (
     <div className="flex justify-center flex-wrap m-8">
-        {allPublishes.map((user) => <Card key={user.idPublish} {...user}/>)}
+        {Array.isArray(allPublishes) && allPublishes.length > 0 ? (
+        allPublishes.map((user) => <Card key={user.idPublish} {...user} />)
+      ) : (
+        <p>No hay datos</p>
+      )}
     </div>
+
   )
 }
 
