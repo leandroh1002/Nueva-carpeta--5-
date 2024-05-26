@@ -1,11 +1,12 @@
 import React from 'react'
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import ButtonDefault from '../ButtonDefault';
 import PATHROUTES from "../../helpers/PathRoutes.helper";
 
 
 
 function Card({idPublish, location, carrer, enterprise, image, offer, task, otherDescription, perfilDecription }) {
+  const uriparam = useLocation();
 
   return (
     <div className='m-3 relative grid h-[40rem] w-full max-w-[28rem] flex-col items-end justify-center overflow-hidden rounded-xl bg-red-500 bg-clip-border text-center text-gray-700'>
@@ -22,14 +23,18 @@ function Card({idPublish, location, carrer, enterprise, image, offer, task, othe
             <h5 className="block mb-4 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-gray-400">
              {enterprise}
             </h5>
-            <Link to={PATHROUTES.LOGIN}> <ButtonDefault type='button' props="Iniciar sesion"/> </Link>
+
+            {uriparam.pathname === PATHROUTES.HOME 
+            ? <ButtonDefault type='button' props="Postularse" />
+            : <Link to={PATHROUTES.LOGIN}><ButtonDefault type='button' props="Iniciar sesion" /></Link>
+            }
+
             <Link to={`/detail/${idPublish}`}>
+              <ButtonDefault type='button' props="Detalles"/>
               {/* <img alt="Tania Andrew"
-            src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1480&amp;q=80"
-            className="relative inline-block h-[74px] w-[74px] !rounded-full border-2 border-white object-cover object-center" /> */}
-            
-            <ButtonDefault type='button' props="Detalles"/>
-        </Link>
+              src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1480&amp;q=80"
+              className="relative inline-block h-[74px] w-[74px] !rounded-full border-2 border-white object-cover object-center" /> */}
+            </Link>
         </div>
         
 
