@@ -14,7 +14,7 @@ function Hero() {
         </h1>
         <p className="mb-8 leading-relaxed">La Sub-secretaría de Asuntos Estudiantiles ha implementado el Régimen de Pasantías Rentadas dirigida a estudiantes Universitarios de acuerdo a lo establecido en la Ley N° 26.427 promulgada el 18 de diciembre de 2008. Se entiende como “pasantía educativa” al conjunto de actividades formativas que realicen los estudiantes en empresas y organismos públicos, o empresas privadas con personería jurídica, sustantivamente relacionado con la propuesta curricular de los estudios cursados en unidades educativas, que se reconoce como experiencia de alto valor pedagógico, sin carácter obligatorio (Art. 2º Ley 26.427).</p>
         <div className="flex justify-center">
-          <ButtonDefault props="Ver Pasantías"/>
+          <ButtonDefault type='button' props="Ver Pasantías"/>
           {/* <button className="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">Button</button> */}
         </div>
       </div>
