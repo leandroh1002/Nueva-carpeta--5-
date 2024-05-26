@@ -9,6 +9,8 @@ import Hero from "./components/Hero.jsx";
 import Testimonials from "./components/Testimonials.jsx";
 import Login from "./components/Login.jsx";
 import FormAddCompanies from "./components/FormAddCompanies.jsx";
+import FormAddCarrer from "./components/FormAddCarrer.jsx";
+
 const REACT_APP_API_URL = import.meta.env.VITE_BASE_URL;
 
 function App() {
