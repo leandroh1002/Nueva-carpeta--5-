@@ -12,15 +12,19 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     department: {
-      type: DataTypes.ENUM('1', '2', '3', '4', '5'),
+      type: DataTypes.ENUM('Economia y Administracion', 'Ciencias de la salud', 'Ingenieria', 'Humanidades', 'Ciencias Juridicas, Politicas y sociales'),
       allowNull: false,
     },
     description: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     duration: {
       type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    isDeleted: {
+      type: DataTypes.BOOLEAN,
       allowNull: false,
     },
   } , { timestamps: false });
