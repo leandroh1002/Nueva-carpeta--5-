@@ -78,11 +78,13 @@ function FormAddCompanies() {
         >
         {( {errors} ) => (  
             // El Form de formik es quien se encarga de enviar el formulario
-            <Form className=''>
-                <div>
-                    <label htmlFor="name">Nombre: </label>
+            <Form className="lg:w-2/6 md:w-1/2 bg-gray-100 rounded-lg p-8 flex flex-col md:m-auto w-full mt-10 md:mt-0">
+                <h2 className="text-gray-900 text-lg font-medium title-font mb-5">Agregar Empresas</h2>
+                <div className="relative mb-4">
+                    <label htmlFor="name" className="leading-7 text-sm text-gray-600">Nombre: </label>
                     {/* el Fiel maneja los datos del formulario, se encarga de enviar a formik las validaciones del input */}
                     <Field 
+                        className="w-full bg-white rounded border border-gray-300 focus:border-[#ca7d10] focus:ring-2 focus:ring-[#d9b662] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                         type="text" 
                         id='name' 
                         name='name' 
@@ -92,9 +94,10 @@ function FormAddCompanies() {
                     <ErrorMessage name='name' component={() => (<div className='error'>{errors.name}</div>)}/>
                 </div>
 
-                <div>
-                    <label htmlFor="description">Description: </label>
+                <div className="relative mb-4">
+                    <label htmlFor="description" className="leading-7 text-sm text-gray-600">Description: </label>
                     <Field 
+                    className="w-full bg-white rounded border border-gray-300 focus:border-[#ca7d10] focus:ring-2 focus:ring-[#d9b662] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                     type="text" 
                     id='description' 
                     name='description' 
@@ -102,9 +105,10 @@ function FormAddCompanies() {
                     />
                     <ErrorMessage name='description' component={() => (<div className='error'>{errors.description}</div>)}/>
                 </div>
-                <div>
-                    <label htmlFor="image">Image: </label>
+                <div className="relative mb-4">
+                    <label htmlFor="image" className="leading-7 text-sm text-gray-600">Image: </label>
                     <Field 
+                    className="w-full bg-white rounded border border-gray-300 focus:border-[#ca7d10] focus:ring-2 focus:ring-[#d9b662] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                     type="text" 
                     id='image' 
                     name='image' 
@@ -112,9 +116,10 @@ function FormAddCompanies() {
                     />
                     <ErrorMessage name='image' component={() => (<div className='error'>{errors.image}</div>)}/>
                 </div>
-                <div>
-                    <label htmlFor="duration">Duration: </label>
+                <div className="relative mb-4">
+                    <label htmlFor="duration" className="leading-7 text-sm text-gray-600">Duration: </label>
                     <Field 
+                    className="w-full bg-white rounded border border-gray-300 focus:border-[#ca7d10] focus:ring-2 focus:ring-[#d9b662] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                     type="number" 
                     id='duration' 
                     name='duration' 
