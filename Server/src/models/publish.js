@@ -7,6 +7,10 @@ module.exports = (sequelize) => {
       primaryKey: true,
       defaultValue: DataTypes.UUIDV4
     },
+    namePublish: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     task: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -34,6 +38,7 @@ module.exports = (sequelize) => {
     isDeleted: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
+      defaultValue: false,
     },
   } , { timestamps: false });
 };
