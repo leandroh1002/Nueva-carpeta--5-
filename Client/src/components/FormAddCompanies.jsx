@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import ButtonDefault from './ButtonDefault';
 import axios from 'axios';
+import UploadWidget from './UploadWidget';
 
 const REACT_APP_API_URL = import.meta.env.VITE_BASE_URL;
 
@@ -34,11 +35,11 @@ function FormAddCompanies() {
             errors.description = 'La descripción no puede tener más de 40 caracteres';
           }
 
-          // Validación de la image
+          // Validación de la imagen (URL)
           if (!values.image) {
-            errors.image = 'Ingresa a qué departamento pertenece la carrera';
-          } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(values.image)) {
-            errors.image = 'El departamento solo puede tener Letras y Espacios';
+            errors.image = 'Ingresa la URL de la imagen';
+          } else if (!/^https?:\/\/\S+$/.test(values.image)) {
+            errors.image = 'Ingresa una URL válida';
           }
 
           // Validación de la duration
@@ -61,9 +62,10 @@ function FormAddCompanies() {
             .catch((error) => {
               console.log(error);
             });
+          console.log(values)
         }}
       >
-        {({ errors }) => (
+        {({ errors, setFieldValue }) => (
           <Form className="lg:w-2/6 md:w-1/2 bg-gray-100 rounded-lg p-8 flex flex-col md:m-auto w-full mt-10 md:mt-0">
             <h2 className="text-gray-900 text-lg font-medium title-font mb-5">Agregar Companias</h2>
             <div className="relative mb-4">
@@ -92,6 +94,9 @@ function FormAddCompanies() {
 
             <div className="relative mb-4">
               <label htmlFor="image" className="leading-7 text-sm text-gray-600">Imagen: </label>
+              <UploadWidget
+                setPublicId={(imageUrl) => setFieldValue('image', imageUrl)} // Actualizamos el valor del campo 'image' en Formik
+              />
               <Field
                 className="w-full bg-white rounded border border-gray-300 focus:border-[#ca7d10] focus:ring-2 focus:ring-[#d9b662] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                 type="text"
