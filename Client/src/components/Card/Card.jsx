@@ -5,8 +5,10 @@ import PATHROUTES from "../../helpers/PathRoutes.helper";
 
 
 
-function Card({idPublish, location, carrer, enterprise, image, offer, task, otherDescription, perfilDecription }) {
+function Card({idPublish, namePublish, carrer, enterprise, image, Companies, task, otherDescription, perfilDecription }) {
   const uriparam = useLocation();
+console.log(Companies)
+const imagem = Companies[0].image;
 
   return (
     <div className='m-3 relative grid h-[40rem] w-full max-w-[28rem] flex-col items-end justify-center overflow-hidden rounded-xl bg-red-500 bg-clip-border text-center text-gray-700'>
@@ -16,28 +18,20 @@ function Card({idPublish, location, carrer, enterprise, image, offer, task, othe
         </div>
         <div className="relative p-6 px-6 py-14 md:px-12">
             <h2 className="mb-6 block font-sans text-4xl font-medium leading-[1.5] tracking-normal text-white antialiased">
-        <p>
-          Pasante de {location}</p>
-            {/* {carrer} */}
-            </h2>
-            <h5 className="block mb-4 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-gray-400">
-             {enterprise}
-            </h5>
+              <p>{namePublish}</p>{/* {carrer} */}</h2>
+            <h5 className="block mb-4 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-gray-400"></h5>
+            <img src={imagem} alt="" />
 
             {uriparam.pathname === PATHROUTES.HOME 
             ? <ButtonDefault type='button' props="Postularse" />
             : <Link to={PATHROUTES.LOGIN}><ButtonDefault type='button' props="Iniciar sesion" /></Link>
             }
 
-            <Link to={`/detail/${idPublish}`}>
-              <ButtonDefault type='button' props="Detalles"/>
+            <Link to={`/detail/${idPublish}`}><ButtonDefault type='button' props="Detalles"/></Link>
               {/* <img alt="Tania Andrew"
               src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1480&amp;q=80"
               className="relative inline-block h-[74px] w-[74px] !rounded-full border-2 border-white object-cover object-center" /> */}
-            </Link>
         </div>
-        
-
     </div>
   )
 }
