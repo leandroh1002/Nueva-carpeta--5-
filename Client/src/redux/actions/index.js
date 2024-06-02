@@ -63,6 +63,15 @@ const getAllCompanies = () => {
       }
     };
   };
+  
+const getUser = (userData) => {
+  try {
+    const { email, password } = userData;
+    
+  } catch (error) {
+    console.log(error)
+  }
+}
 
   export {
     getAllPublish,
