@@ -13,11 +13,11 @@ module.exports = (sequelize) => {
     },
     aboutMe: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,  // No obligatorio
     },
     typeOfPerson: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: true,  // No obligatorio
     },
     email: {
       type: DataTypes.STRING,
@@ -29,15 +29,15 @@ module.exports = (sequelize) => {
     },
     phone: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,  // No obligatorio
     },
     location: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,  // No obligatorio
     },
     country: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,  // No obligatorio
     },
-  } , { timestamps: false });
+  }, { timestamps: false });
 };
