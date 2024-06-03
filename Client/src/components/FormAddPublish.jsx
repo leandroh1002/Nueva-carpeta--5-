@@ -192,6 +192,7 @@ function FormAddPublish() {
 
             <div className='relative mb-4'>
                 <Field name='idCarrer' as='select' className="w-full bg-white rounded border border-gray-300 focus:border-[#ca7d10] focus:ring-2 focus:ring-[#d9b662] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    <option value="">Elige una carrera</option>
                     {allCarrers && allCarrers.map(carrer => (
                                 <option key={carrer.idCarrer} value={carrer.idCarrer}>{carrer.name}</option>
                             ))}
@@ -200,6 +201,7 @@ function FormAddPublish() {
 
                 <div className='relative mb-4'>
                 <Field name='idCompany' as='select' className="w-full bg-white rounded border border-gray-300 focus:border-[#ca7d10] focus:ring-2 focus:ring-[#d9b662] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    <option value="">Elige una Compania</option>
                     {allCompanies && allCompanies.map(carrer => (
                                 <option key={carrer.idCompanies} value={carrer.idCompanies}>{carrer.name}</option>
                             ))}
