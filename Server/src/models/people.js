@@ -15,8 +15,8 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: true,  // No obligatorio
     },
-    typeOfPerson: {
-      type: DataTypes.ENUM('Alumno', 'Admin'),
+    typeAdmin: {
+      type: DataTypes.BOOLEAN,
       allowNull: true,  // No obligatorio
     },
     email: {
