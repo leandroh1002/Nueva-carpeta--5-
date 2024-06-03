@@ -16,7 +16,7 @@ module.exports = (sequelize) => {
       allowNull: true,  // No obligatorio
     },
     typeOfPerson: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.ENUM('Alumno', 'Admin'),
       allowNull: true,  // No obligatorio
     },
     email: {
