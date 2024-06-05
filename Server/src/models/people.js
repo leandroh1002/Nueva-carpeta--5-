@@ -39,5 +39,13 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: true,  // No obligatorio
     },
+    image: {
+      type: DataTypes.STRING,
+      allowNull: true,  // No obligatorio
+    },
+    yearsOfCarrer: {
+      type: DataTypes.INTEGER,
+      allowNull: true,  // No obligatorio
+    },
   }, { timestamps: false });
 };
