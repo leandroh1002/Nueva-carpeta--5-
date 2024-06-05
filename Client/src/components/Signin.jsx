@@ -2,13 +2,23 @@ import { Link } from 'react-router-dom'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import PATHROUTES from "../helpers/PathRoutes.helper";
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ButtonDefault from './ButtonDefault';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllCarrer } from '../redux/actions';
 const REACT_APP_API_URL = import.meta.env.VITE_BASE_URL;
 
 
 function Signin() {
   const [success, setSuccess] = useState(false);
+  const allCarrers = useSelector((state) => state.allCarrer);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+      dispatch(getAllCarrer());
+  }, [dispatch]);
+  console.log(allCarrers)
+
 
   return (
     <div><section className="text-gray-600 body-font">
@@ -22,6 +32,8 @@ function Signin() {
         email: '',
         password: '',
         fullName: '',
+        yearsOfCarrer: '',
+        idCarrer: '',
       }}
       validate={(values) => {
         let errors = {};
@@ -39,15 +51,24 @@ function Signin() {
         } else if (values.password.length > 40) {
           errors.password = 'La descripción no puede tener más de 40 caracteres';
         }
+
         // Validación de la fullName
         if (!values.fullName) {
           errors.fullName = 'Ingresa una descripción';
         } else if (values.fullName.length > 40) {
           errors.fullName = 'La descripción no puede tener más de 40 caracteres';
         }
+        
+        // Validación de yearsOfCarrer
+        if (!values.yearsOfCarrer) {
+          errors.yearsOfCarrer = 'Ingresa una descripción';
+        } else if (values.yearsOfCarrer.length > 40) {
+          errors.yearsOfCarrer = 'La descripción no puede tener más de 40 caracteres';
+        }
         return errors;
       }}
       onSubmit={(values, { resetForm }) => {
+        console.log("valores de carreras", values.idCarrer)
         axios.post(`${REACT_APP_API_URL}/signin`, values)
           .then((response) => {
             if (response.status === 201 || response.status === 200) {
@@ -98,6 +119,25 @@ function Signin() {
               />
               <ErrorMessage name="fullName" component={() => (<div className="error">{errors.fullName}</div>)} />
             </div>
+            <div className="relative mb-4">
+              <label htmlFor="yearsOfCarrer" className="leading-7 text-sm text-gray-600">yearsOfCarrer: </label>
+              <Field
+                className="w-full bg-white rounded border border-gray-300 focus:border-[#ca7d10] focus:ring-2 focus:ring-[#d9b662] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                type="text"
+                id="yearsOfCarrer"
+                name="yearsOfCarrer"
+                placeholder="yearsOfCarrer"
+              />
+              <ErrorMessage name="yearsOfCarrer" component={() => (<div className="error">{errors.yearsOfCarrer}</div>)} />
+            </div>
+            <div className='relative mb-4'>
+                <Field name='idCarrer' as='select' className="w-full bg-white rounded border border-gray-300 focus:border-[#ca7d10] focus:ring-2 focus:ring-[#d9b662] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    <option value="">Elige una carrera</option>
+                    {allCarrers && allCarrers.map(carrer => (
+                                <option key={carrer.idCarrer} value={carrer.idCarrer}>{carrer.name}</option>
+                            ))}
+                    </Field>
+                </div>
             <ButtonDefault type="submit" props="Registrarse"></ButtonDefault>
         <p className="text-xs text-gray-500 mt-3">Tu cuenta en autogestion debe estar accesible.</p>
         </Form>)}
