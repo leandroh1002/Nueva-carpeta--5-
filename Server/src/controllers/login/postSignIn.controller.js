@@ -1,4 +1,5 @@
 const { People } = require("../../db.js");
+const jwt = require("jsonwebtoken");
 
 exports.postSignInController = async (req, res) => {
   console.log("Estoy en el signincontroller");
@@ -32,9 +33,21 @@ exports.postSignInController = async (req, res) => {
     });
     
     console.log("Creó el usuario en la DB");
+    
+    // Genera un token JWT con la información del usuario
+    const token = jwt.sign(
+      {
+        idPeople: newUser.idPeople,
+        email: newUser.email,
+        typeAdmin: newUser.typeAdmin,
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: "1h" }
+    );
+    console.log("creo el token");
 
     // Devolver una respuesta exitosa sin token
-    res.status(201).json({ message: "Usuario creado exitosamente", user: newUser });
+    res.status(201).json({ message: "Usuario creado exitosamente", token });
   } catch (error) {
     console.error("Error en el registro:", error);
     res.status(500).json({ error: "Internal Server Error" });
