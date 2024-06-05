@@ -1,17 +1,22 @@
-const { People } = require("../../db.js");
+const { People, Carrer } = require("../../db.js");
 const jwt = require("jsonwebtoken");
 
 exports.postSignInController = async (req, res) => {
   console.log("Estoy en el signincontroller");
 
   try {
-    const { fullName, email, password, typeAdmin } = req.body;
+    const { fullName, email, password, typeAdmin, yearsOfCarrer, idCarrer } = req.body;
 
-    // Verifica si se proporcionaron email, contraseña y fullName
-    if (!fullName || !email || !password) {
+    // Verifica si se proporcionaron los datos
+    if (!fullName || !email || !password || !yearsOfCarrer || !idCarrer ) {
       return res.status(400).json({
-        error: "fullName, email y contraseña son requeridos.",
+        error: "Todos los campos son requeridos.",
       });
+    }
+
+    const carrer = await Carrer.findByPk(idCarrer);
+    if (!carrer) {
+      return res.status(404).json({ error: "Carrer or Company not found." });
     }
 
     console.log("Paso la verificación de usuario, email y contraseña");
@@ -30,7 +35,9 @@ exports.postSignInController = async (req, res) => {
       email,
       password, // Almacena la contraseña sin hashear (¡No recomendado para producción!)
       typeAdmin: adminStatus,
+      yearsOfCarrer,
     });
+    await newUser.addCarrer(carrer);
     
     console.log("Creó el usuario en la DB");
     
