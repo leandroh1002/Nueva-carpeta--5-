@@ -1,4 +1,5 @@
 const { People } = require("../../db.js");
+const jwt = require("jsonwebtoken")
 
 exports.postLogInController = async (req, res) => {
   const { email, password } = req.body;
@@ -21,13 +22,19 @@ exports.postLogInController = async (req, res) => {
     }
 
     // Verificar la contraseña
-    // Aquí simplemente comparamos las contraseñas sin usar bcrypt
     if (password !== user.password) {
       return res.status(401).json({ error: "Contraseña incorrecta." });
     }
 
+    // Generar el token JWT
+    const token = jwt.sign(
+      { idPeople: user.idPeople, fullName: user.fullName,email: user.email, typeAdmin: user.typeAdmin },
+      process.env.JWT_SECRET,
+      { expiresIn: "1h" }
+    );
+
     // En lugar de generar un token, puedes devolver una respuesta indicando el éxito del inicio de sesión
-    res.status(200).json({ message: "Inicio de sesión exitoso", user });
+    res.status(200).json({ message: "Inicio de sesión exitoso", token });
   } catch (error) {
     console.error("Error al iniciar sesión:", error);
     res.status(500).json({ error: "Error interno del servidor" });
