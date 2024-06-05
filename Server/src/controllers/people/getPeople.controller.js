@@ -1,11 +1,11 @@
 const { getPublishService } = require('../../services/people/getPeople.service.js');
-const { People } = require("../../db.js");
+const { People, Carrer } = require("../../db.js");
 
 
 const getPeopleController = async (req, res) => {
     try {
         const peoples = await People.findAll({
-            // include: Activity
+            include: Carrer
         });
 
         res.status(200).json(peoples);
