@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import PATHROUTES from "../helpers/PathRoutes.helper";
 import axios from 'axios';
@@ -10,7 +10,9 @@ const REACT_APP_API_URL = import.meta.env.VITE_BASE_URL;
 
 
 function Signin() {
+  const navigate = useNavigate();
   const [success, setSuccess] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
   const allCarrers = useSelector((state) => state.allCarrer);
   const dispatch = useDispatch();
 
@@ -72,6 +74,22 @@ function Signin() {
         axios.post(`${REACT_APP_API_URL}/signin`, values)
           .then((response) => {
             if (response.status === 201 || response.status === 200) {
+              const token = response.data.token;
+              console.log(rememberMe, "remenberMe");
+              console.log("Token recibido del servidor:", token);
+              localStorage.setItem("token", token);
+              if (rememberMe) {
+                const passwordUser = response.data.password;
+                const email = response.data.email;
+                console.log(
+                  "Email y password recibida del servidor:",
+                  email,
+                  passwordUser
+                );
+                localStorage.setItem(StoreItem.passwordUser, JSON.stringify(passwordUser));
+                localStorage.setItem(StoreItem.email, JSON.stringify(email));
+              }
+              navigate("/home");
               setSuccess(true);
               resetForm();
               console.log(response)
