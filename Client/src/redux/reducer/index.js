@@ -1,9 +1,10 @@
-import { GET_CARRER, GET_COMPANIES, GET_PUBLISH} from "../actions/action-types";
+import { GET_CARRER, GET_COMPANIES, GET_PUBLISH, GET_USERLOGUED} from "../actions/action-types";
 
 const initialState = {
     allPublish: [],
     allCarrer: [],
     allCompanies: [],
+    UserLogued: [],//hay que ver porque capaz que puedo usar el token para los cambios
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -17,6 +18,10 @@ const rootReducer = (state = initialState, { type, payload }) => {
         case GET_CARRER:
             return {...state,
             allCarrer: payload,
+        }
+        case GET_USERLOGUED:
+            return {...state,
+            UserLogued: payload,
         }
         case GET_COMPANIES:
             return {...state,
