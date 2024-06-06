@@ -1,14 +1,47 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import PATHROUTES from "../helpers/PathRoutes.helper";
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ButtonDefault from './ButtonDefault';
 const REACT_APP_API_URL = import.meta.env.VITE_BASE_URL;
+import { jwtDecode } from "jwt-decode";
+import Swal from 'sweetalert2';
 
 
 function Login() {
   const [success, setSuccess] = useState(false);
+  const navigate = useNavigate();
+  const [rememberMe, setRememberMe] = useState(false);//esto era para recordar el inicio de sesion
+
+  useEffect(() => {
+    const tokenStorage = localStorage.getItem("token");//accede al token del localstorage
+    if (tokenStorage) {
+      console.log("tokenStorage", tokenStorage);
+      try {
+        const decodedToken = jwtDecode(tokenStorage);
+        const username = decodedToken.fullName;
+        console.log("Usuario ya autenticado:", decodedToken.fullName);
+        console.log("typeAdmin:", decodedToken.typeAdmin);
+        Swal.fire({
+          icon: "success",
+          title: `¡Bienvenido de nuevo ${username}!`,
+          text: `Vamos ver las pasantías?`,
+          showDenyButton: true,
+          confirmButtonText: "SI!",
+          denyButtonText: `Volver al Login`,
+        }).then((result) => {
+          if (result.isConfirmed) {
+            navigate("/home");
+          } else if (result.isDenied) {
+            navigate("/login");
+          }
+        });
+      } catch (error) {
+        console.log("Error al decodificar el token:", error);
+      }
+    }
+  }, [navigate]);
 
   return (
     <div><section className="text-gray-600 body-font">
@@ -44,6 +77,22 @@ function Login() {
         axios.post(`${REACT_APP_API_URL}/login`, values)
           .then((response) => {
             if (response.status === 201 || response.status === 200) {
+              const token = response.data.token;
+              console.log(rememberMe, "remenberMe");
+              console.log("Token recibido del servidor:", token);
+              localStorage.setItem("token", token);
+              if (rememberMe) {
+                const passwordUser = response.data.password;
+                const email = response.data.email;
+                console.log(
+                  "Email y password recibida del servidor:",
+                  email,
+                  passwordUser
+                );
+                localStorage.setItem(StoreItem.passwordUser, JSON.stringify(passwordUser));
+                localStorage.setItem(StoreItem.email, JSON.stringify(email));
+              }
+              navigate("/home");
               setSuccess(true);
               resetForm();
               console.log(response)
@@ -79,6 +128,10 @@ function Login() {
                 placeholder="Password"
               />
               <ErrorMessage name="password" component={() => (<div className="error">{errors.password}</div>)} />
+            </div>
+            <div>
+            <label>
+              <input type="checkbox" id="cbox1" value="first_checkbox" /> Recordar</label>
             </div>
             <ButtonDefault type="submit" props="Iniciar Sesion"></ButtonDefault>
         <p className="text-xs text-gray-500 mt-3">Tu cuenta en autogestion debe estar accesible.</p><Link to={PATHROUTES.SIGNIN}>Register</Link>
