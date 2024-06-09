@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import PATHROUTES from "../helpers/PathRoutes.helper";
+import StoreItem from "../helpers/LocalStorage";
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import ButtonDefault from './ButtonDefault';
@@ -16,6 +17,7 @@ function Login() {
 
   useEffect(() => {
     const tokenStorage = localStorage.getItem("token");//accede al token del localstorage
+    console.log("tokenStorage", tokenStorage);
     if (tokenStorage) {
       console.log("tokenStorage", tokenStorage);
       try {
@@ -90,8 +92,10 @@ function Login() {
                   passwordUser
                 );
                 localStorage.setItem(StoreItem.passwordUser, JSON.stringify(passwordUser));
+                localStorage.setItem(StoreItem.idPeople, JSON.stringify(idPeople));
                 localStorage.setItem(StoreItem.email, JSON.stringify(email));
               }
+              dispatch(guncion(idPeople))
               navigate("/home");
               setSuccess(true);
               resetForm();
