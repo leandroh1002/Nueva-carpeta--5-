@@ -5,6 +5,7 @@ import {
   GET_CARRER,
   GET_COMPANIES,
   GET_PUBLISH,
+  GET_USERLOGUED,
 } from "../actions/action-types";
 
 const REACT_APP_API_URL = import.meta.env.VITE_BASE_URL;
@@ -64,10 +65,17 @@ const getAllCompanies = () => {
     };
   };
   
-const getUser = (userData) => {
+const getUser = async (userData) => {
+  console.log("a ver que ondas")
   try {
-    const { email, password } = userData;
-    
+    const idPeople = userData;
+        const response = await axios.get(`${REACT_APP_API_URL}/people/${idPeople}`);
+        console.log("respuesta url", `${REACT_APP_API_URL}/people/${idPeople}`)
+        console.log(response.data)
+        return ({
+          type: GET_USERLOGUED,
+          payload: response.data,
+        });
   } catch (error) {
     console.log(error)
   }
@@ -77,5 +85,6 @@ const getUser = (userData) => {
     getAllPublish,
     getAllCarrer,
     getAllCompanies,
+    getUser
   };
   
