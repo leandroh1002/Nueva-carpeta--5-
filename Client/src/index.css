@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities{
+  .paused{
+    animation-play-state: paused;
+  }
+}
+
 :root {
     font-family: Arial, sans-serif, Inter, system-ui, Avenir, Helvetica;
     line-height: 1.5;
