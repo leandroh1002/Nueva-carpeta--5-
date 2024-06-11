@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import { getAllPublish } from "../../redux/actions/index";
 import Card from '../Card/Card';
+import InfiniteCarreousel from '../infiniteCarreousel';
 
 
 function Home() {
@@ -22,6 +23,7 @@ function Home() {
       ) : (
         <p>No hay datos</p>
       )}
+      <InfiniteCarreousel/><></>
     </div>
 
   )
