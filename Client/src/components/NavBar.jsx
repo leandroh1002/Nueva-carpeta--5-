@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import PATHROUTES from "../helpers/PathRoutes.helper";
+import Logout from './Logout';
 
 
 function NavBar() {
@@ -35,6 +36,9 @@ function NavBar() {
           <path d="M5 12h14M12 5l7 7-7 7"></path>
         </svg>
       </button></Link>}
+      
+      {/* <--------Boton de Logout------> */}
+      {location.pathname === PATHROUTES.HOME && <Link to={PATHROUTES.LANDING}><Logout/></Link>}
     </div>
   </header></div>
   )
