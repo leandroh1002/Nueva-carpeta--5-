@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import PATHROUTES from "../helpers/PathRoutes.helper";
+import StoreItem from "../helpers/LocalStorage";
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import ButtonDefault from './ButtonDefault';
@@ -79,6 +80,7 @@ function Signin() {
               console.log("Token recibido del servidor:", token);
               localStorage.setItem("token", token);
               if (rememberMe) {
+                const fullName = response.data.fullName;
                 const passwordUser = response.data.password;
                 const email = response.data.email;
                 console.log(
@@ -88,6 +90,7 @@ function Signin() {
                 );
                 localStorage.setItem(StoreItem.passwordUser, JSON.stringify(passwordUser));
                 localStorage.setItem(StoreItem.email, JSON.stringify(email));
+                localStorage.setItem(StoreItem.fullName, JSON.stringify(fullName));
               }
               navigate("/home");
               setSuccess(true);
