@@ -1,20 +1,19 @@
 import React from 'react'
-import StoreItem from "../helpers/LocalStorage";
+import { useNavigate } from 'react-router-dom';
+import PATHROUTES from '../helpers/PathRoutes.helper';
 
 
 function Logout() {
-    const tokenStorage = localStorage.getItem("token");//accede al token del localstorage
-    console.log("tokenStorage", tokenStorage);
-    localStorage.removeItem(StoreItem.passwordUser);
-    // localStorage.removeItem(StoreItem.email);
-    // localStorage.removeItem(StoreItem.fullName);
-    // localStorage.removeItem(StoreItem.token);
-    // localStorage.removeItem(StoreItem.idPeople);
-    // localStorage.removeItem(StoreItem.isProvider);
-    // localStorage.setItem(StoreItem.hola, "aqui estoy");
+  const navigate = useNavigate()
+
+  const handleLogout = () =>{
+    localStorage.clear();
+    navigate(PATHROUTES.LANDING);
+  }
+
   return (
     <div>
-        <button>Logout</button>
+        <button onClick={handleLogout}>Logout</button>
     </div>
   )
 }
