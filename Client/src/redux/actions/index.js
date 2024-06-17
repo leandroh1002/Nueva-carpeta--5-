@@ -2,6 +2,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 import {
+  ACCESS_BACK_SAVE_DATA,
   GET_CARRER,
   GET_COMPANIES,
   GET_PUBLISH,
@@ -65,26 +66,28 @@ const getAllCompanies = () => {
     };
   };
   
-const getUser = async (userData) => {
-  console.log("a ver que ondas")
-  try {
-    const idPeople = userData;
-        const response = await axios.get(`${REACT_APP_API_URL}/people/${idPeople}`);
-        console.log("respuesta url", `${REACT_APP_API_URL}/people/${idPeople}`)
-        console.log(response.data)
-        return ({
-          type: GET_USERLOGUED,
-          payload: response.data,
-        });
-  } catch (error) {
-    console.log(error)
-  }
-}
+const getUser = (userData) => {
+  return async (dispatch) => {
+    try {
+      const idPeople = userData;
+      const response = await axios.get(`${REACT_APP_API_URL}/people/${idPeople}`);
+      console.log("respuesta url", `${REACT_APP_API_URL}/people/${idPeople}`)
+      console.log("respuesta del id action", response.data)
+      dispatch({
+        type: GET_USERLOGUED,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
 
   export {
     getAllPublish,
     getAllCarrer,
     getAllCompanies,
-    getUser
+    getUser,
+    recoverUserLoggedData
   };
   
