@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import axios from 'axios'
+import ButtonApply from '../ButtonApply';
+import ButtonDefault from '../ButtonDefault';
 
 
 function Details() {
@@ -22,6 +24,8 @@ function Details() {
 
   return (
     <div>
+      <ButtonApply type='button' props="Postularse" />
+      <ButtonDefault type='button' props="Volver"/>
         <p>{countries.namePublish}</p>
         <hr />
         <h3>Sos estudiante avanzado de {countries.Carrers && countries.Carrers.length > 0 && countries.Carrers[0].name}?</h3> 
