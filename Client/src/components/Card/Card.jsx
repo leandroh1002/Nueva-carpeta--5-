@@ -2,13 +2,13 @@ import React from 'react'
 import { Link, useLocation } from "react-router-dom";
 import ButtonDefault from '../ButtonDefault';
 import PATHROUTES from "../../helpers/PathRoutes.helper";
+import ButtonApply from '../ButtonApply';
 
 
 
-function Card({idPublish, namePublish, carrer, enterprise, image, Companies, task, otherDescription, perfilDecription }) {
+function Card({idPublish, namePublish, carrer, enterprise, image, Companies, task, otherDescription, perfilDecription, value }) {
   const uriparam = useLocation();
-console.log(Companies)
-const imagem = Companies[0].image;
+  const imagem = Companies[0].image;
 
   return (
     <div className='m-3 relative grid h-[40rem] w-full max-w-[28rem] flex-col items-end justify-center overflow-hidden rounded-xl bg-red-500 bg-clip-border text-center text-gray-700'>
@@ -23,7 +23,7 @@ const imagem = Companies[0].image;
             <img src={imagem} alt="" />
 
             {uriparam.pathname === PATHROUTES.HOME 
-            ? <ButtonDefault type='button' props="Postularse" />
+            ? <ButtonApply type='button' props="Postularse" idPublish={idPublish} value={value}/>
             : <Link to={PATHROUTES.LOGIN}><ButtonDefault type='button' props="Iniciar sesion" /></Link>
             }
 
