@@ -3,9 +3,10 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios'
 import ButtonApply from '../ButtonApply';
 import ButtonDefault from '../ButtonDefault';
+import ButtonBack from '../ButtonBack';
 
 
-function Details() {
+function Details({valueId}) {
     const [countries, setCountries] = useState([]);
     const {id} = useParams();
 
@@ -21,11 +22,10 @@ function Details() {
         return setCountries({});
      }, [id]);
 
-
   return (
     <div>
-      <ButtonApply type='button' props="Postularse" />
-      <ButtonDefault type='button' props="Volver"/>
+      <ButtonApply type='button' props="Postularse" idPublish={countries.idPublish} value={valueId}/>
+      <ButtonBack type='button' props="Volver"/>
         <p>{countries.namePublish}</p>
         <hr />
         <h3>Sos estudiante avanzado de {countries.Carrers && countries.Carrers.length > 0 && countries.Carrers[0].name}?</h3> 
