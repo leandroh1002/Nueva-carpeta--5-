@@ -4,6 +4,7 @@ import ButtonDefault from "./ButtonDefault"
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllCompanies, getAllCarrer } from "../redux/actions/index";
+import ButtonBack from './ButtonBack';
 const REACT_APP_API_URL = import.meta.env.VITE_BASE_URL;
 
 function FormAddPublish() {
@@ -20,6 +21,7 @@ function FormAddPublish() {
   
   return (
     <>
+      <ButtonBack type="button" props="Volver"/>
       <Formik
             initialValues={{
                 namePublish: '',

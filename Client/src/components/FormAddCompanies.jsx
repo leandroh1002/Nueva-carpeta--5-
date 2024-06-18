@@ -3,6 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import ButtonDefault from './ButtonDefault';
 import axios from 'axios';
 import UploadWidget from './UploadWidget';
+import ButtonBack from './ButtonBack';
 
 const REACT_APP_API_URL = import.meta.env.VITE_BASE_URL;
 
@@ -11,6 +12,7 @@ function FormAddCompanies() {
 
   return (
     <>
+      <ButtonBack type="button" props="Volver"/>
       <Formik
         initialValues={{
           name: '',
