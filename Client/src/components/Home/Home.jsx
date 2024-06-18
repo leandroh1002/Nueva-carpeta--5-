@@ -7,10 +7,10 @@ import Hero from '../Hero';
 import Testimonials from '../Testimonials';
 
 
-function Home() {
+function Home(valueId) {
     const allPublishes = useSelector((state) => state.allPublish);
     const dispatch = useDispatch();
-
+  console.log(valueId)
 
     useEffect(()=>{
         dispatch(getAllPublish())
@@ -22,7 +22,7 @@ function Home() {
     <div className="flex justify-center flex-wrap m-8">
       <Hero />
         {Array.isArray(allPublishes) && allPublishes.length > 0 ? (
-        allPublishes.map((user) => <Card key={user.idPublish} {...user} />)
+        allPublishes.map((user) => <Card key={user.idPublish} value={valueId.valueId} {...user} />)
       ) : (
         <p>No hay datos</p>
       )}
