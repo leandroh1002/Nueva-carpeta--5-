@@ -1,12 +1,23 @@
+import axios from 'axios';
 import React from 'react'
 import { useSelector } from 'react-redux';
+const REACT_APP_API_URL = import.meta.env.VITE_BASE_URL;
 
 function ButtonApply({props , type, value, idPublish}) {
   const userLoggedInfo = useSelector(state => state.UserLogued);
   
-  const handleApply = (value, idPublish) => {
+  const handleApply = async (value, idPublish) => {
     console.log(value)
     console.log(idPublish)
+    try {
+      const apply = await axios.post(`/people`, {value, idPublish})
+      console.log(apply)
+      if(apply.status === 201){
+        console.log("Aplicado correctamente")
+      }
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
