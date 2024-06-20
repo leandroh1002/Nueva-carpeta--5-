@@ -88,6 +88,5 @@ const getUser = (userData) => {
     getAllCarrer,
     getAllCompanies,
     getUser,
-    recoverUserLoggedData
   };
   
