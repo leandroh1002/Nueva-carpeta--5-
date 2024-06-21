@@ -9,6 +9,7 @@ const PATHROUTES = {
     FORM_ADD_CARRER:"/formaddcarrer",
     PUBLISH:"/publish",
     PERFIL:"/perfil",
+    DASHBOARD:"/dashboard",
 }
 
 export default PATHROUTES;
