@@ -4,19 +4,19 @@ const postPeoplePublish = async (req, res) => {
   console.log("Estoy en el signincontroller");
 
   try {
-    const { idPeople, value } = req.body;
+    const { idPublish, value } = req.body;
 
-    if (!idPeople || !value ) {
+    if (!idPublish || !value ) {
       return res.status(400).json({
         error: "Todos los campos son requeridos.",
       });
     }
 
-    const publish = await Publish.findByPk(value);
+    const publish = await Publish.findByPk(idPublish);
     if (!publish) {
       return res.status(404).json({ error: "Publicacion not found." });
     }
-    const people = await People.findByPk(idPeople);
+    const people = await People.findByPk(value);
     if (!people) {
       return res.status(404).json({ error: "Persona not found." });
     }
