@@ -2,19 +2,41 @@ const { People } = require("../../db");
 
 const putPeopleController = async (req, res) => {
   try {
-    const { email, password, typeAdmin, yearsOfCarrer } = req.body;
-    const [newCompany, created] = await People.findOrCreate({
-      where: { name ,description, image, duration }
+    const { idPeople, fullName, aboutMe, phone, email, password, location, country, image, yearsOfCarrer } = req.body;
+
+    if (!idPeople) {
+      return res.status(400).json({
+        error: "El id del usuario es requerido.",
+      });
+    }
+    if (!email || !password) {
+      return res.status(400).json({
+        error: "El mail y la contraseña son requeridos.",
+      });
+    }
+
+    const person = await People.findByPk(idPeople);
+
+    if (!person) {
+      return res.status(404).json({ error: "Persona no encontrada." });
+    }
+
+    const updatedPerson = await person.update({
+      fullName,
+      aboutMe,
+      phone: parseInt(phone, 10), 
+      email,
+      password,
+      location,
+      country,
+      image,
+      yearsOfCarrer
     });
 
-    if (created) {
-      res.status(201).json(newCompany);
-    } else {
-      res.status(200).json({ message: "La compañía ya existe", company: newCompany });
-    }
+    res.status(200).json({ message: "Usuario actualizado exitosamente", person: updatedPerson });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: error.message });
+    console.error("Error en la actualización:", error);
+    res.status(500).json({ error: "Error interno del servidor" });
   }
 };
 
