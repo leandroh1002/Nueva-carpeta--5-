@@ -1,4 +1,3 @@
-const { getPublishService } = require('../../services/people/getPeople.service.js');
 const { People, Carrer } = require("../../db.js");
 
 

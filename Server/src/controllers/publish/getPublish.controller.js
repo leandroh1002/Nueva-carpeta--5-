@@ -1,4 +1,3 @@
-const { getPublishService } = require('../../services/people/getPeople.service.js');
 const { Publish, Companies, Carrer } = require("../../db.js");
 
 const getPublishController = async (req, res) => {
