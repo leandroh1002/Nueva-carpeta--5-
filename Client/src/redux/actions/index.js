@@ -6,6 +6,7 @@ import {
   GET_CARRER,
   GET_COMPANIES,
   GET_PUBLISH,
+  USERLOGOUT,
   GET_USERLOGUED,
 } from "../actions/action-types";
 
@@ -83,10 +84,26 @@ const getUser = (userData) => {
   };
 };
 
+const logOutUser = () => {
+  return async (dispatch) => {
+    try {
+      console.log("ese es el log del vaciado del global");
+      await dispatch({
+        type: USERLOGOUT,
+        payload: [],
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+
   export {
     getAllPublish,
     getAllCarrer,
     getAllCompanies,
-    getUser,
+    logOutUser,
+    getUser
   };
   

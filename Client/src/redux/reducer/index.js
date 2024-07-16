@@ -1,4 +1,4 @@
-import { ACCESS_BACK_SAVE_DATA, GET_CARRER, GET_COMPANIES, GET_PUBLISH, GET_USERLOGUED} from "../actions/action-types";
+import { ACCESS_BACK_SAVE_DATA, GET_CARRER, GET_COMPANIES, GET_PUBLISH, GET_USERLOGUED, USERLOGOUT} from "../actions/action-types";
 
 const initialState = {
     allPublish: [],
@@ -20,6 +20,10 @@ const rootReducer = (state = initialState, { type, payload }) => {
             allCarrer: payload,
         }
         case GET_USERLOGUED:
+            return {...state,
+            UserLogued: payload,
+        }
+        case USERLOGOUT:
             return {...state,
             UserLogued: payload,
         }
