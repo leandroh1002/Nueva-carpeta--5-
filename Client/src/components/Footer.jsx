@@ -3,8 +3,8 @@ import React from 'react'
 function Footer() {
   return (
     <div>
-      <footer className="text-gray-600 body-font">
-        <div className="container px-5 py-8 mx-auto bg-[#3a4652] max-w-none">
+      <footer className="text-gray-600 body-font bg-[#3a4652]">
+        <div className="container px-5 py-8 mx-auto  max-w-none">
           <div className="flex flex-wrap md:text-left text-center order-first justify-center">
             <div className="lg:w-1/4 md:w-1/2 w-full px-4">
               <h2 className="title-font font-medium text-gray-50 tracking-widest text-sm mb-3">Sede Central UNSTA</h2>
@@ -23,7 +23,7 @@ function Footer() {
                 </li>
               </nav>
             </div>
-            <div className="lg:w-1/4 md:w-1/2 w-full px-4">
+            <div className="lg:w-1/4 md:w-1/2 w-full px-4 ">
               <h2 className="title-font font-medium text-gray-50 tracking-widest text-sm mb-3">Campus UNSTA Yerba Buena</h2>
               <nav className="list-none mb-10">
                 <li>
@@ -72,8 +72,8 @@ function Footer() {
             </div> */}
           </div>
         </div>
-        <div className="bg-[#194da0]">
-          <div className="container px-5 py-6 mx-auto flex items-center sm:flex-row flex-col">
+        <div className='bg-[#194da0]'>
+          <div className="container px-5 py-6 mx-auto flex items-center sm:flex-row flex-col ">
             <a className="flex title-font font-medium items-center md:justify-start justify-center text-gray-100">
               {/* <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-10 h-10 text-white p-2 bg-purple-500 rounded-full" viewBox="0 0 24 24">
                 <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>

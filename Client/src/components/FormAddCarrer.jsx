@@ -25,14 +25,14 @@ function FormAddCompanies() {
           // Validación nombre
           if (!values.name) {
             errors.name = 'Ingresa la Carrera';
-          } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(values.name)) {
+          } else if (!/^[a-zA-ZÀ-ÿ\s]{1,55}$/.test(values.name)) {
             errors.name = 'El nombre solo puede tener Letras y Espacios';
           }
 
           // Validación de la description
           if (!values.description) {
             errors.description = 'Ingresa una descripción';
-          } else if (values.description.length > 40) {
+          } else if (values.description.length > 55) {
             errors.description = 'La descripción no puede tener más de 40 caracteres';
           }
 
