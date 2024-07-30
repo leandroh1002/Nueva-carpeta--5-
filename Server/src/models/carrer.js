@@ -13,7 +13,7 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     department: {
-      type: DataTypes.ENUM('Economia y Administracion', 'Ciencias de la salud', 'Ingenieria', 'Humanidades', 'Ciencias Juridicas, Politicas y sociales'),
+      type: DataTypes.ENUM('Economía y Administración', 'Ciencias de la salud', 'Ingenieria', 'Humanidades', 'Ciencias Juridicas, Politicas y sociales'),
       allowNull: false,
     },
     description: {
