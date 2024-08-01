@@ -12,23 +12,23 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     task: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT, // Cambiado a TEXT para permitir cadenas largas
       allowNull: false,
     },
     description: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT, // Cambiado a TEXT para permitir cadenas largas
       allowNull: true,
     },
     perfil: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT, // Cambiado a TEXT para permitir cadenas largas
       allowNull: false,
     },
     requirement: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT, // Cambiado a TEXT para permitir cadenas largas
       allowNull: false,
     },
     offer: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT, // Cambiado a TEXT para permitir cadenas largas
       allowNull: false,
     },
     location: {
@@ -40,5 +40,5 @@ module.exports = (sequelize) => {
       allowNull: false,
       defaultValue: false,
     },
-  } , { timestamps: false });
+  }, { timestamps: false });
 };
