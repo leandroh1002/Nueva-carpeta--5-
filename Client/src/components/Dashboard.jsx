@@ -1,15 +1,27 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import styles from "./styles/TableUserDue.module.scss"
+import FormMail from './FormMail';
 
 const REACT_APP_API_URL = import.meta.env.VITE_BASE_URL;
 
 function Dashboard() {
   const [data, setData] = useState([]);
   const [selectedPublish, setSelectedPublish] = useState(null);
+  const [showForm, setShowForm] = useState(false);
+  const [email, setEmail] = useState("");
 
   useEffect(() => {
     onSubmit();
   }, []);
+
+  const handleShowForm = () => {
+    setShowForm(!showForm);
+  };
+
+  const onMailButtonClick = (email) => {
+    setEmail(email)
+  }
 
   const onSubmit = async () => {
     try {
@@ -27,7 +39,7 @@ function Dashboard() {
   };
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-4  my-16">
       <div className="mb-4">
         <select
           name="publish"
@@ -45,8 +57,8 @@ function Dashboard() {
       </div>
 
       {selectedPublish && (
-        <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-gray-200">
+        <div className="overflow-x-auto rounded-xl">
+          <table className="min-w-full divide-y divide-gray-200 rounded-e-lg">
             <thead className="bg-gray-50">
               <tr>
                 <th
@@ -83,6 +95,12 @@ function Dashboard() {
                   scope="col"
                   className="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider"
                 >
+                  Enviar Mail
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
                   Visto
                 </th>
               </tr>
@@ -96,7 +114,7 @@ function Dashboard() {
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-500">{person.aboutMe}</div>
+                    <div className="text-sm text-gray-500">{person.aboutMe}{console.log(person)}</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm text-gray-900">
@@ -117,6 +135,15 @@ function Dashboard() {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm text-gray-900">
+                    <button
+                      className='flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600' onClick={() => {
+                        handleShowForm();
+                        onMailButtonClick(person.email);
+                      }}>Enviar email</button>
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="text-sm text-gray-900">
                     <input
                       id="comments"
                       name="comments"
@@ -130,7 +157,7 @@ function Dashboard() {
             </tbody>
           </table>
         </div>
-      )}
+      )}{showForm && <FormMail handleShowForm={handleShowForm} email={email} />}
     </div>
   );
 }
