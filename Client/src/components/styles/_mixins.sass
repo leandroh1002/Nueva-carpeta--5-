@@ -21,3 +21,64 @@
 
 @mixin background-general
   background-color: #d3eeff
+
+@mixin boxShadowCard
+    border: 1px solid rgba(128, 128, 128, 0.3)
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.05)
+    background-color: white
+    border-radius: 10px
+
+@mixin font($color, $font-size, $font-weight, $font-style)
+    font-family: 'K2D', sans-serif
+    font-size: $font-size
+    font-weight: $font-weight
+    font-style: $font-style
+    color: $color
+
+@mixin inputsFormat
+    height: 40px
+    width: 100%
+    padding: 0px 15px
+    font-family: 'K2D', sans-serif
+    font-size: 16px
+    font-style: normal
+    font-weight: normal
+    color: $secondaryColor
+    box-sizing: border-box
+    border: 2px solid $secondaryColor
+    border-radius: 10px
+    transition: .2s
+
+@mixin inputsFormat_Hover
+    outline: none
+    border: 2px solid $alertColor
+    transform: scale(1.02)
+
+@mixin inputsFormat_Placeholder
+    font-family: 'K2D', sans-serif
+    font-size: 16px
+    font-style: italic
+    font-weight: normal
+    color: #969696
+
+@mixin buttonActive
+    background-color: $primaryColor!important
+    font-family: 'K2D', sans-serif
+    font-size: 18px
+    font-weight: normal
+    font-style: normal
+    color: white
+    padding: 8px 20px
+    border-radius: 10px
+    border: none
+    outline: none
+    cursor: pointer
+    transition: .2s
+
+@mixin buttonHover
+    background-color: $hoverColor
+    transform: scale(1.02)
+
+@mixin buttonPressed
+    transform: scale(0.95)
+    background-color: $alertColor
