@@ -2,7 +2,7 @@ import React from 'react'
 
 function Testimonials() {
   return (
-    <section className="text-gray-600 body-font">
+    <section className="text-gray-600 body-font rounded-tl-sm rounded-br-md  ">
     <div className="container px-5 py-24 mx-auto">
       <div className="flex flex-wrap -m-4">
         <div className="lg:w-1/3 lg:mb-0 mb-6 p-4">
