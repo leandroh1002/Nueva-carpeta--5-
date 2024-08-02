@@ -1,22 +1,31 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import PATHROUTES from '../helpers/PathRoutes.helper';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { logOutUser } from '../redux/actions';
 
 function Profile({imagePerfil}) {
   const userLoggedInfo = useSelector(state => state.UserLogued);
     const [isOpen, setIsOpen] = useState(false);
-
+    
     const toggleMenu = () => {
       setIsOpen(!isOpen);
     };
-
+    const dispatch = useDispatch();
     const navigate = useNavigate()
-
-    const handleLogout = () =>{
-      localStorage.clear();
-      setTimeout(() => navigate(PATHROUTES.LANDING), 1000);
-    }
+    
+    
+    const handleLogout = async () => {
+      try {
+        localStorage.clear();
+        await dispatch(logOutUser()); // Asegúrate de que postUser retorna una promesa
+        await navigate(PATHROUTES.LANDING);
+        console.log("Estado global después del logout", userLoggedInfo); // Puede que este valor no esté actualizado inmediatamente
+      } catch (error) {
+        console.error("Error during logout", error);
+      }
+    };
+    
 
     useEffect(() => {
       if (imagePerfil) {
