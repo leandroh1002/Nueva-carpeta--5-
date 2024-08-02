@@ -35,7 +35,7 @@ function FormPerfil() {
 
           // Validación nombre
           if (!values.fullName) {
-            errors.fullName = 'Ingresa la Carrera';
+            errors.fullName = 'Ingresa tu nombre completo';
           } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(values.fullName)) {
             errors.fullName = 'El nombre solo puede tener Letras y Espacios';
           }
@@ -48,14 +48,14 @@ function FormPerfil() {
           }
           // Validación nombre
           if (!values.location) {
-            errors.location = 'Ingresa la Carrera';
+            errors.location = 'Ingresa tu Localidad';
           } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(values.location)) {
             errors.location = 'El nombre solo puede tener Letras y Espacios';
           }
 
           // Validación de la AboutMe
           if (!values.country) {
-            errors.country = 'Ingresa una descripción';
+            errors.country = 'Ingresa la provincia de donde eres';
           } else if (values.country.length > 500) {
             errors.country = 'La descripción no puede tener más de 40 caracteres';
           }
@@ -66,16 +66,28 @@ function FormPerfil() {
           } else if (!/^https?:\/\/\S+$/.test(values.image)) {
             errors.image = 'Ingresa una URL válida';
           }
+          // Validación de Email
+          if (!values.email) {
+            errors.email = 'Ingresa tu correo electrónico';
+          } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
+            errors.email = 'Ingresa un correo electrónico válido';
+          }
 
+          // Validación de password
+          if (!values.password) {
+            errors.password = 'Ingresa tu contraseña';
+          } else if (values.password.length < 8) {
+            errors.password = 'La contraseña debe tener al menos 8 caracteres';
+          }
           // Validación de la duration
           if (!values.yearsOfCarrer) {
             errors.yearsOfCarrer = 'Aquí va la duración de la carrera';
-          } else if (!/^\d+$/.test(values.yearsOfCarrer)) {
-            errors.yearsOfCarrer = 'Solo números';
+          } else if (!/^[1-5]$/.test(values.yearsOfCarrer)) {
+            errors.yearsOfCarrer = 'En años del 1 al 5';
           }
           
           if (!values.phone) {
-            errors.phone = 'Aquí va la duración de la carrera';
+            errors.phone = 'Ingresa tu numero de contacto';
           } else if (!/^\d+$/.test(values.phone)) {
             errors.phone = 'Solo números';
           }
@@ -97,7 +109,7 @@ function FormPerfil() {
         }}
       >
 
-        {({ errors, setFieldValue }) => {
+        {({ errors, setFieldValue, fieldValue }) => {
           useEffect(() => {
 
           }, []);
@@ -112,7 +124,8 @@ function FormPerfil() {
                 type="text"
                 id="fullName"
                 name="fullName"
-                placeholder="Ej. EDET"
+                placeholder="Ej. Juan Lopez"
+                disabled
               />
               <ErrorMessage name="fullName" component={() => (<div className="error">{errors.fullName}</div>)} />
             </div>
@@ -130,61 +143,62 @@ function FormPerfil() {
             </div>
 
             <div className="relative mb-4">
-              <label htmlFor="phone" className="leading-7 text-sm text-gray-600">phone: </label>
+              <label htmlFor="phone" className="leading-7 text-sm text-gray-600">Telefono de contacto: </label>
               <Field
                 className="w-full bg-white rounded border border-gray-300 focus:border-[#ca7d10] focus:ring-2 focus:ring-[#d9b662] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                 type="text"
                 id="phone"
                 name="phone"
-                placeholder="phone"
+                placeholder="Ej: 3811234567"
               />
               <ErrorMessage name="phone" component={() => (<div className="error">{errors.phone}</div>)} />
             </div>
 
-            <div className="relative mb-4">
-              <label htmlFor="email" className="leading-7 text-sm text-gray-600">email: </label>
-              <Field
+            <div className="relative mb-4 flex gap-1 justify-center">
+              <label htmlFor="email" className="leading-7 text-sm text-gray-600">Email: </label>
+              <p>{userLoggedInfo.email}</p>
+              {/* <Field
                 className="w-full bg-white rounded border border-gray-300 focus:border-[#ca7d10] focus:ring-2 focus:ring-[#d9b662] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                 type="text"
                 id="email"
                 name="email"
-                placeholder="Descripción"
-              />
+                placeholder="Ej: ejemplo@mail.com"
+              /> */}
               <ErrorMessage name="email" component={() => (<div className="error">{errors.email}</div>)} />
             </div>
 
             <div className="relative mb-4">
-              <label htmlFor="password" className="leading-7 text-sm text-gray-600">password: </label>
+              <label htmlFor="password" className="leading-7 text-sm text-gray-600">Password: </label>
               <Field
                 className="w-full bg-white rounded border border-gray-300 focus:border-[#ca7d10] focus:ring-2 focus:ring-[#d9b662] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                 type="text"
                 id="password"
                 name="password"
-                placeholder="password"
+                placeholder="Password"
               />
               <ErrorMessage name="password" component={() => (<div className="error">{errors.password}</div>)} />
             </div>
 
             <div className="relative mb-4">
-              <label htmlFor="location" className="leading-7 text-sm text-gray-600">location: </label>
+              <label htmlFor="location" className="leading-7 text-sm text-gray-600">Localidad: </label>
               <Field
                 className="w-full bg-white rounded border border-gray-300 focus:border-[#ca7d10] focus:ring-2 focus:ring-[#d9b662] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                 type="text"
                 id="location"
                 name="location"
-                placeholder="location"
+                placeholder="Localidad"
               />
               <ErrorMessage name="location" component={() => (<div className="error">{errors.location}</div>)} />
             </div>
 
             <div className="relative mb-4">
-              <label htmlFor="country" className="leading-7 text-sm text-gray-600">country: </label>
+              <label htmlFor="country" className="leading-7 text-sm text-gray-600">Provincia: </label>
               <Field
                 className="w-full bg-white rounded border border-gray-300 focus:border-[#ca7d10] focus:ring-2 focus:ring-[#d9b662] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                 type="text"
                 id="country"
                 name="country"
-                placeholder="country"
+                placeholder="Provincia"
               />
               <ErrorMessage name="country" component={() => (<div className="error">{errors.country}</div>)} />
             </div>
@@ -211,9 +225,9 @@ function FormPerfil() {
                 type="number"
                 id="yearsOfCarrer"
                 name="yearsOfCarrer"
-                placeholder="Anio que cursa"
+                placeholder="Año que cursa"
               />
-              <ErrorMessage name="yearsOfCarrer" component={() => (<div className="error">{errors.duration}</div>)} />
+              <ErrorMessage name="yearsOfCarrer" component={() => (<div className="error">{errors.yearsOfCarrer}</div>)} />
             </div>
             <ButtonDefault type="submit" props="Enviar"></ButtonDefault>
           </Form>

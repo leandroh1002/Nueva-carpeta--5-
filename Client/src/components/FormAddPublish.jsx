@@ -40,47 +40,47 @@ function FormAddPublish() {
           // Validación namePublish
           if (!values.namePublish) {
             errors.namePublish = 'Ingresa la Carrera';
-          } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(values.namePublish)) {
+          } else if (!/^[a-zA-ZÀ-ÿ\s.,]{1,500}$/.test(values.namePublish)) {
             errors.namePublish = 'El nombre solo puede tener Letras y Espacios';
           }
 
           // Validación de la description
           if (!values.description) {
-            errors.description = 'Ingresa una descripción';
-          } else if (values.description.length > 40) {
-            errors.description = 'La descripción no puede tener más de 40 caracteres';
+            errors.description = 'Ingresa una descripción de la busqueda';
+          } else if (values.description.length > 3000) {
+            errors.description = 'La descripción no puede tener más de 3000 caracteres';
           }
 
-          // Validación de la task
+          // Validación de tareas
           if (!values.task) {
-            errors.task = 'Ingresa a qué departamento pertenece la carrera';
-          } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(values.task)) {
-            errors.task = 'El departamento solo puede tener Letras y Espacios';
+            errors.task = 'Ingresa qué tareas van a desempeñar';
+          } else if (!/^[a-zA-ZÀ-ÿ\s.,;:!?()\-\t•]{1,3000}$/.test(values.task)) {
+            errors.task = 'Las tareas solo pueden tener letras, espacios, puntuación común y viñetas';
           }
 
           // Validación de la perfil
           if (!values.perfil) {
-            errors.perfil = 'Aquí va la duración de la carrera';
-          } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(values.perfil)) {
+            errors.perfil = 'Ingresa el perfil que buscan';
+          } else if (!/^[a-zA-ZÀ-ÿ\s.,;:!?()\-\t•]{1,3000}$/.test(values.perfil)) {
             errors.perfil = 'Solo números';
           }
           // Validación de la requirement
           if (!values.requirement) {
-            errors.requirement = 'Ingresa una descripción';
-          } else if (values.requirement.length > 40) {
+            errors.requirement = 'Ingrese los requerimientos mínimos de la postulación';
+          } else if (!/^[a-zA-ZÀ-ÿ\s.,;:!?()\-\t•]{1,3000}$/.test(values.requirement)) {
             errors.requirement = 'La descripción no puede tener más de 40 caracteres';
           }
 
           // Validación de la offer
           if (!values.offer) {
-            errors.offer = 'Ingresa a qué departamento pertenece la carrera';
+            errors.offer = 'Ingresa que ofrecen en este puesto';
           } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(values.offer)) {
             errors.offer = 'El departamento solo puede tener Letras y Espacios';
           }
 
           // Validación de la location
           if (!values.location) {
-            errors.location = 'Aquí va la duración de la carrera';
+            errors.location = 'Ingresa a que localidad esta dirigida la postulación';
           } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(values.location)) {
             errors.location = 'Solo números';
           }
@@ -109,7 +109,7 @@ function FormAddPublish() {
             <h2 className="text-gray-900 text-lg font-medium title-font mb-5">Agregar Publicaciones</h2>
             
             <div className="relative mb-4">
-              <label htmlFor="namePublish" className="leading-7 text-sm text-gray-600">namePublish: </label>
+              <label htmlFor="namePublish" className="leading-7 text-sm text-gray-600">Nombre de la publicación: </label>
               <Field
                 className="w-full bg-white rounded border border-gray-300 focus:border-[#ca7d10] focus:ring-2 focus:ring-[#d9b662] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                 type="text"
@@ -121,7 +121,7 @@ function FormAddPublish() {
             </div>
             
             <div className="relative mb-4">
-              <label htmlFor="description" className="leading-7 text-sm text-gray-600">description: </label>
+              <label htmlFor="description" className="leading-7 text-sm text-gray-600">Descripçión de la pasantía: </label>
               <Field
                 className="w-full bg-white rounded border border-gray-300 focus:border-[#ca7d10] focus:ring-2 focus:ring-[#d9b662] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                 type="description"
@@ -133,7 +133,7 @@ function FormAddPublish() {
             </div>
             
             <div className="relative mb-4">
-              <label htmlFor="task" className="leading-7 text-sm text-gray-600">task: </label>
+              <label htmlFor="task" className="leading-7 text-sm text-gray-600">Tareas: </label>
               <Field
                 className="w-full bg-white rounded border border-gray-300 focus:border-[#ca7d10] focus:ring-2 focus:ring-[#d9b662] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                 type="text"
@@ -145,7 +145,7 @@ function FormAddPublish() {
             </div>
 
             <div className="relative mb-4">
-              <label htmlFor="perfil" className="leading-7 text-sm text-gray-600">perfil: </label>
+              <label htmlFor="perfil" className="leading-7 text-sm text-gray-600">Perfil: </label>
               <Field
                 className="w-full bg-white rounded border border-gray-300 focus:border-[#ca7d10] focus:ring-2 focus:ring-[#d9b662] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                 type="text"
@@ -157,7 +157,7 @@ function FormAddPublish() {
             </div>
 
             <div className="relative mb-4">
-              <label htmlFor="requirement" className="leading-7 text-sm text-gray-600">requirement: </label>
+              <label htmlFor="requirement" className="leading-7 text-sm text-gray-600">Requisitos: </label>
               <Field
                 className="w-full bg-white rounded border border-gray-300 focus:border-[#ca7d10] focus:ring-2 focus:ring-[#d9b662] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                 type="text"
@@ -169,7 +169,7 @@ function FormAddPublish() {
             </div>
 
             <div className="relative mb-4">
-              <label htmlFor="offer" className="leading-7 text-sm text-gray-600">offer: </label>
+              <label htmlFor="offer" className="leading-7 text-sm text-gray-600">Ofrecemos: </label>
               <Field
                 className="w-full bg-white rounded border border-gray-300 focus:border-[#ca7d10] focus:ring-2 focus:ring-[#d9b662] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                 type="text"
@@ -181,7 +181,7 @@ function FormAddPublish() {
             </div>
 
             <div className="relative mb-4">
-              <label htmlFor="duration" className="leading-7 text-sm text-gray-600">location: </label>
+              <label htmlFor="duration" className="leading-7 text-sm text-gray-600">Localidad: </label>
               <Field
                 className="w-full bg-white rounded border border-gray-300 focus:border-[#ca7d10] focus:ring-2 focus:ring-[#d9b662] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                 type="text"
