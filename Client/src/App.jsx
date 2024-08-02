@@ -15,6 +15,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "./redux/actions/index.js";
 import { useEffect } from "react";
 import StoreItem from "./helpers/LocalStorage.js";
+import Nav from "./components/Nav.jsx";
+import Dashboard from "./components/Dashboard.jsx";
+import DashboardView from "./components/Views/DashboardView.jsx";
 
 const REACT_APP_API_URL = import.meta.env.VITE_BASE_URL;
 
@@ -34,7 +37,7 @@ function App() {
     useEffect(() => {
       if (!userLoggedInfo) return;
   
-      if (userLoggedInfo.typeAdmin  === true) {
+      if (userLoggedInfo.typeAdmin  === true || userLoggedInfo.typeAdmin  === false) {
         if (pathname === PATHROUTES.LOGIN || pathname === PATHROUTES.LANDING) {
           navigate(PATHROUTES.HOME);
         }
@@ -49,38 +52,37 @@ function App() {
     <div>
       {
         userLoggedInfo.idPeople != null ?
-          <div>
-            {
-              userLoggedInfo.typeAdmin === false || userLoggedInfo.typeAdmin === '' || userLoggedInfo.typeAdmin === true ? <NavBar></NavBar> : null
-            }
+        <div>
+            <Nav isAdmin={userLoggedInfo.typeAdmin} imagePerfil={userLoggedInfo.image}></Nav>
             {
               userLoggedInfo.typeAdmin === false &&
               <Routes>
                 {/* Alumno */}
-                <Route path={PATHROUTES.HOME} element={<Home />} />
+                <Route path={PATHROUTES.HOME} element={<Home valueId={userLoggedInfo.idPeople}/>} />
                 <Route path={PATHROUTES.PERFIL} element={<FormPerfil />} />
-                <Route path={PATHROUTES.DETAIL} element={<Details />}/>
+                <Route path={PATHROUTES.DETAIL} element={<Details valueId={userLoggedInfo.idPeople}/>}/>
                 <Route path='*' element={<NotFound />}/>
               </Routes>
             }
             {
               userLoggedInfo.typeAdmin === true &&
               <Routes>
-                <Route path={PATHROUTES.HOME} element={<Home />} />
+                <Route path={PATHROUTES.HOME} element={<Home valueId={userLoggedInfo.idPeople}/>} />
                 <Route path={PATHROUTES.FORM_ADD_COMPANIES} element={<FormAddCompanies />} />
                 <Route path={PATHROUTES.FORM_ADD_CARRER} element={<FormAddCarrer />} />
                 <Route path={PATHROUTES.PUBLISH} element={<FormAddPublish />} />
+                <Route path={PATHROUTES.DASHBOARD} element={<DashboardView />} />
                 <Route path={PATHROUTES.DETAIL} element={<Details />}/>
                 <Route path='*' element={<NotFound />}/>
               </Routes>
             }
             <Footer />
-          </div>
+        </div>
           :
           <div>
-            <NavBar></NavBar>
+            <Nav></Nav>
             <Routes>
-              <Route path={PATHROUTES.LANDING} element={<Home />} />
+              <Route path={PATHROUTES.LANDING} element={<Home />}/>
               <Route path={PATHROUTES.LOGIN} element={<Login />} />
               <Route path={PATHROUTES.SIGNIN} element={<Signin />} />
               <Route path={PATHROUTES.DETAIL} element={<Details />} />
