@@ -2,6 +2,7 @@ import { useState } from "react";
 import styles from "./styles/FormMail.module.sass";
 import axios from "axios";
 // import Validation from "./ValidationFormMail";
+import Validation from "../helpers/ValidationFormMail"
 import Swal from "sweetalert2";
 
 function FormMail({ handleShowForm, email }) {
