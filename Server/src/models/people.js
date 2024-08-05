@@ -43,6 +43,10 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: true,  // No obligatorio
     },
+    cv: {
+      type: DataTypes.STRING,
+      allowNull: true,  // No obligatorio
+    },
     yearsOfCarrer: {
       type: DataTypes.INTEGER,
       allowNull: true,  // No obligatorio
