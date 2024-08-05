@@ -2,7 +2,7 @@ const { People } = require("../../db");
 
 const putPeopleController = async (req, res) => {
   try {
-    const { idPeople, fullName, aboutMe, phone, email, password, location, country, image, yearsOfCarrer } = req.body;
+    const { idPeople, fullName, aboutMe, phone, email, password, location, country, image, yearsOfCarrer, cv } = req.body;
 
     if (!idPeople) {
       return res.status(400).json({
@@ -30,6 +30,7 @@ const putPeopleController = async (req, res) => {
       location,
       country,
       image,
+      cv,
       yearsOfCarrer
     });
 
