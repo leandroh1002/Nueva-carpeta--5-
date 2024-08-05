@@ -67,7 +67,7 @@ const UploadWidget = ({ setPublicId }) => {
     <div >
       <button 
       // className={style.editButton} 
-      onClick={() => widgetRef.current.open()}>Subir imagen</button>
+      onClick={() => widgetRef.current.open()}>Subir Archivo</button>
     </div>
   );
 };
