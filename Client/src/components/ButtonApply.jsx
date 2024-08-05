@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react'
 import { useSelector } from 'react-redux';
+import Swal from "sweetalert2";
 const REACT_APP_API_URL = import.meta.env.VITE_BASE_URL;
 
 function ButtonApply({props , type, value, idPublish}) {
@@ -12,8 +13,13 @@ function ButtonApply({props , type, value, idPublish}) {
     try {
       const apply = await axios.post(`/people`, {value, idPublish})
       console.log(apply)
-      if(apply.status === 201){
-        console.log("Aplicado correctamente")
+      if (apply.status === 201) {
+        console.log(apply.status);
+        Swal.fire({
+          title: "Postulado Correctamente",
+          icon: 'success',
+          confirmButtonText: 'Aceptar'
+        });
       }
     } catch (error) {
       console.log(error)

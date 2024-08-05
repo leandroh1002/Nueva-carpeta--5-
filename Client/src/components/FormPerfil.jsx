@@ -5,11 +5,11 @@ import axios from 'axios';
 import UploadWidget from './UploadWidget';
 import ButtonBack from './ButtonBack';
 import { useSelector } from 'react-redux';
+import Swal from "sweetalert2";
 
 const REACT_APP_API_URL = import.meta.env.VITE_BASE_URL;
 
 function FormPerfil() {
-  const [success, setSuccess] = useState(false);
   const userLoggedInfo = useSelector(state => state.UserLogued);
   console.log("usuario logueado", userLoggedInfo);
 
@@ -27,6 +27,7 @@ function FormPerfil() {
           location: userLoggedInfo.location,
           country: userLoggedInfo.country,
           image: userLoggedInfo.image,
+          cv: userLoggedInfo.cv,
           yearsOfCarrer: userLoggedInfo.yearsOfCarrer,
         }}
       
@@ -66,6 +67,12 @@ function FormPerfil() {
           } else if (!/^https?:\/\/\S+$/.test(values.image)) {
             errors.image = 'Ingresa una URL válida';
           }
+          // Validación de la imagen (URL)
+          if (!values.cv) {
+            errors.cv = 'Ingresa la URL de la imagen';
+          } else if (!/^https?:\/\/\S+$/.test(values.cv)) {
+            errors.cv = 'Ingresa una URL válida';
+          }
           // Validación de Email
           if (!values.email) {
             errors.email = 'Ingresa tu correo electrónico';
@@ -98,12 +105,19 @@ function FormPerfil() {
           axios.put(`${REACT_APP_API_URL}/people`, values)
             .then((response) => {
               if (response.status === 201 || response.status === 200) {
-                setSuccess(true);
-                setTimeout(() => setSuccess(false), 5000);
-              }
+                Swal.fire({
+                  title: "Perfil Actualizado Correctamente",
+                  icon: 'success',
+                  confirmButtonText: 'Aceptar'
+                });              }
             })
             .catch((error) => {
               console.log(error);
+              Swal.fire({
+                title: "Verifique los valores del formulario nuevamente",
+                icon: 'warning',
+                confirmButtonText: 'Volver'
+              });
             });
           console.log(values)
         }}
@@ -216,6 +230,21 @@ function FormPerfil() {
                 placeholder="URL"
               />
               <ErrorMessage name="image" component={() => (<div className="error">{errors.image}</div>)} />
+            </div>
+
+            <div className="relative mb-4">
+              <label htmlFor="image" className="leading-7 text-sm text-gray-600">CV: </label>
+              <UploadWidget
+                setPublicId={(imageUrl) => setFieldValue('cv', imageUrl)} // Actualizamos el valor del campo 'image' en Formik
+              /><div className='flex'>
+              <Field
+                className="w-full bg-white rounded border border-gray-300 focus:border-[#ca7d10] focus:ring-2 focus:ring-[#d9b662] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                type="text"
+                id="cv"
+                name="cv"
+                placeholder="CV"
+              /><a href={userLoggedInfo.cv} target='_blank'><ButtonDefault type='button' props="Download CV"></ButtonDefault></a></div>
+              <ErrorMessage name="cv" component={() => (<div className="error">{errors.cv}</div>)} />
             </div>
 
             <div className="relative mb-4">

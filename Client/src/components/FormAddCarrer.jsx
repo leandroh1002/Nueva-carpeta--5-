@@ -3,12 +3,11 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import ButtonDefault from './ButtonDefault';
 import axios from 'axios';
 import ButtonBack from './ButtonBack';
+import Swal from "sweetalert2";
 
 const REACT_APP_API_URL = import.meta.env.VITE_BASE_URL;
 
 function FormAddCompanies() {
-  const [success, setSuccess] = useState(false);
-
   return (
     <>
       <ButtonBack type="button" props="Volver"/>
@@ -55,13 +54,21 @@ function FormAddCompanies() {
           axios.post(`${REACT_APP_API_URL}/carrer`, values)
             .then((response) => {
               if (response.status === 201 || response.status === 200) {
-                setSuccess(true);
+                Swal.fire({
+                  title: "Carrera Agregada Correctamente",
+                  icon: 'success',
+                  confirmButtonText: 'Aceptar'
+                });
                 resetForm();
-                setTimeout(() => setSuccess(false), 5000);
               }
             })
             .catch((error) => {
               console.log(error);
+              Swal.fire({
+                title: "Verifique los valores del formulario nuevamente",
+                icon: 'warning',
+                confirmButtonText: 'Volver'
+              });
             });
         }}
       >

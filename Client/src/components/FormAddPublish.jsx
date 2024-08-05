@@ -5,10 +5,11 @@ import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllCompanies, getAllCarrer } from "../redux/actions/index";
 import ButtonBack from './ButtonBack';
+import Swal from "sweetalert2";
+
 const REACT_APP_API_URL = import.meta.env.VITE_BASE_URL;
 
 function FormAddPublish() {
-  const [success, setSuccess] = useState(false);
   const allCarrers = useSelector((state) => state.allCarrer);
   const allCompanies = useSelector((state) => state.allCompanies);
   const dispatch = useDispatch();
@@ -92,13 +93,21 @@ function FormAddPublish() {
           axios.post(`${REACT_APP_API_URL}/publish`, values)
             .then((response) => {
               if (response.status === 201 || response.status === 200) {
-                setSuccess(true);
+                Swal.fire({
+                  title: "Publicacion Agregada Correctamente",
+                  icon: 'success',
+                  confirmButtonText: 'Aceptar'
+                });
                 resetForm();
-                setTimeout(() => setSuccess(false), 5000);
               }
             })
             .catch((error) => {
               console.log(error);
+              Swal.fire({
+                title: "Verifique los valores del formulario nuevamente",
+                icon: 'warning',
+                confirmButtonText: 'Volver'
+              });
             });
         console.log("listo", values)
         }

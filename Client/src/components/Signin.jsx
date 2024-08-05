@@ -7,12 +7,13 @@ import React, { useEffect, useState } from 'react';
 import ButtonDefault from './ButtonDefault';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllCarrer } from '../redux/actions';
+import Swal from "sweetalert2";
+
 const REACT_APP_API_URL = import.meta.env.VITE_BASE_URL;
 
 
 function Signin() {
   const navigate = useNavigate();
-  const [success, setSuccess] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const allCarrers = useSelector((state) => state.allCarrer);
   const dispatch = useDispatch();
@@ -92,15 +93,22 @@ function Signin() {
                 localStorage.setItem(StoreItem.email, JSON.stringify(email));
                 localStorage.setItem(StoreItem.fullName, JSON.stringify(fullName));
               }
+              Swal.fire({
+                title: "Registrado Correctamente",
+                icon: 'success',
+                confirmButtonText: 'Aceptar'
+              });
               navigate(PATHROUTES.LOGIN);
-              setSuccess(true);
               resetForm();
-              console.log(response)
-              setTimeout(() => setSuccess(false), 5000);
             }
           })
           .catch((error) => {
             console.log(error);
+            Swal.fire({
+              title: "Verifique los valores del formulario nuevamente",
+              icon: 'warning',
+              confirmButtonText: 'Volver'
+            });
           });
       }}
       >
