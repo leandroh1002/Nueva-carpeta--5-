@@ -1,7 +1,8 @@
-import { ACCESS_BACK_SAVE_DATA, GET_CARRER, GET_COMPANIES, GET_PUBLISH, GET_USERLOGUED, USERLOGOUT} from "../actions/action-types";
+import { ACCESS_BACK_SAVE_DATA, GET_CARRER, GET_COMPANIES, GET_PUBLISH, GET_USERLOGUED, USERLOGOUT, FILTERED_PUBLISH} from "../actions/action-types";
 
 const initialState = {
     allPublish: [],
+    FilteredPublish: [],
     allCarrer: [],
     allCompanies: [],
     UserLogued: [],//hay que ver porque capaz que puedo usar el token para los cambios
@@ -14,6 +15,10 @@ const rootReducer = (state = initialState, { type, payload }) => {
         case GET_PUBLISH:
             return {...state,
             allPublish: payload,
+        }
+        case FILTERED_PUBLISH:
+            return {...state,
+            FilteredPublish: payload,
         }
         case GET_CARRER:
             return {...state,
