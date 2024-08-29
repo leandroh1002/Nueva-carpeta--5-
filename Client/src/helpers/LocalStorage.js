@@ -3,6 +3,8 @@ const StoreItem = {
     dataUserSignIn : 'dataUserSignIn',
     passwordUser : 'passwordUser',
     idPeople : 'idPeople',
+    idCarrer : 'idCarrer',
+    isAdmin : 'idAdmin',
     email : 'email',
     token : '',
 }

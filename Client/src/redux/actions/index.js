@@ -9,6 +9,8 @@ import {
   USERLOGOUT,
   GET_USERLOGUED,
   FILTERED_PUBLISH,
+  CLEAR_ALL_PUBLISH,
+  CLEAR_FILTERED_PUBLISH,
 } from "../actions/action-types";
 
 const REACT_APP_API_URL = import.meta.env.VITE_BASE_URL;
@@ -16,6 +18,10 @@ const REACT_APP_API_URL = import.meta.env.VITE_BASE_URL;
 const getAllPublish = () => {
     return async (dispatch) => {
       try {
+        dispatch({
+          type: CLEAR_FILTERED_PUBLISH,
+        });
+  
         const response = await axios.get(`${REACT_APP_API_URL}/publish`);
         return dispatch({
           type: GET_PUBLISH,
@@ -36,6 +42,9 @@ const getFilteredPublish = (idCarrer) => {
   
     return async (dispatch) => {
       try {
+        dispatch({
+          type: CLEAR_ALL_PUBLISH,
+        });
         const response = await axios.get(`${REACT_APP_API_URL}/publishes/filtered/${idCarrer}`);
         return dispatch({
           type: FILTERED_PUBLISH,
