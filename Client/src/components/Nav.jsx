@@ -18,7 +18,7 @@ import styles from "./styles/ButtonDefault.module.sass"
 
 const navigation = [
   { name: 'Autogestion', href: '#', current: true },
-  { name: 'CEO', href: '#', current: false },
+  { name: 'SEO', href: '#', current: false },
 ];
 
 function classNames(...classes) {
@@ -28,7 +28,7 @@ function classNames(...classes) {
 export default function Example({ isAdmin, imagePerfil }) {
   const userLoggedInfo = useSelector(state => state.UserLogued);
   console.log(isAdmin);
-  console.log(imagePerfil);
+  //console.log(imagePerfil);
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
@@ -38,7 +38,7 @@ export default function Example({ isAdmin, imagePerfil }) {
       localStorage.clear();
       await dispatch(logOutUser()); // Asegúrate de que postUser retorna una promesa
       await navigate(PATHROUTES.LANDING);
-      console.log("Estado global después del logout", userLoggedInfo); // Puede que este valor no esté actualizado inmediatamente
+      //console.log("Estado global después del logout", userLoggedInfo); // Puede que este valor no esté actualizado inmediatamente
     } catch (error) {
       console.error("Error during logout", error);
     }
@@ -66,7 +66,7 @@ export default function Example({ isAdmin, imagePerfil }) {
                 <div className="flex flex-shrink-0 items-center">
                   <Link to={isAdmin === undefined ? `${PATHROUTES.LANDING}` : `${PATHROUTES.HOME}`}>
                   <img
-                    className="h-8 w-auto"
+                    className="h-12 w-auto"
                     src="https://www.unsta.edu.ar/wp-content/uploads/2019/10/UNSTA_isologotipo-1.png"
                     alt="Your Company"
                   /></Link>
@@ -79,8 +79,8 @@ export default function Example({ isAdmin, imagePerfil }) {
                         href={item.href}
                         className={classNames(
                           item.current
-                            ? ' text-gray-950 hover:text-gray-950 hover:bg-[#b0ddff]'
-                            : 'text-gray-950 hover:text-gray-950 hover:bg-[#b0ddff]',
+                            ? ' text-white hover:text-gray-950 hover:bg-[#b0ddff]'
+                            : 'text-white hover:text-gray-950 hover:bg-[#b0ddff]',
                           'rounded-md px-3 py-2 text-sm font-medium'
                         )}
                         aria-current={item.current ? 'page' : undefined}
@@ -103,7 +103,7 @@ export default function Example({ isAdmin, imagePerfil }) {
                   // Profile dropdown
                   <Menu as="div" className="relative ml-3">
                     <div>
-                      <MenuButton className="text-white relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                      <MenuButton button-menu-id="menu" className="text-white relative py-2 px-2 pr-5 pl-5 flex rounded-xl bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                         {/* <span className="absolute -inset-1.5" />
                         <span className="sr-only">Open user menu</span>
                         <img
@@ -181,7 +181,7 @@ export default function Example({ isAdmin, imagePerfil }) {
                                 </Link>
                               )}
                             </MenuItem>
-                            <MenuItem>
+                            <MenuItem button-logout-id="logout">
                               {({ active }) => (
                                 <a
                                   className={classNames(
@@ -197,7 +197,7 @@ export default function Example({ isAdmin, imagePerfil }) {
                           </>
                         ) : (
                           <>
-                            <MenuItem>
+                            <MenuItem button-perfil-id="perfil">
                               {({ active }) => (
                                 <Link to={PATHROUTES.PERFIL}>
                                   <a
@@ -211,7 +211,7 @@ export default function Example({ isAdmin, imagePerfil }) {
                                 </Link>
                               )}
                             </MenuItem>
-                            <MenuItem>
+                            <MenuItem button-logout-id="logout">
                               {({ active }) => (
                                 <a
                                   onClick={handleLogout}
