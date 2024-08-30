@@ -2,7 +2,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 import {
-  ACCESS_BACK_SAVE_DATA,
+  SOME_PUBLISH,
   GET_CARRER,
   GET_COMPANIES,
   GET_PUBLISH,
@@ -128,8 +128,30 @@ const logOutUser = () => {
   };
 };
 
+const getSomePublish = (idPeople) => {
+  console.log(idPeople);
+  
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`${REACT_APP_API_URL}/people/publish/${idPeople}`);
+      console.log(response.data.Publishes);
+      const asd = response.data.Publishes
+      if(Array.isArray(asd)){
+        const publishIds = asd.map(publish => publish.idPublish);
+        console.log(publishIds);
+        return dispatch({
+          type: SOME_PUBLISH,
+          payload: publishIds,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
 
   export {
+    getSomePublish,
     getAllPublish,
     getAllCarrer,
     getAllCompanies,
