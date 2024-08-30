@@ -8,7 +8,7 @@ async function startServer() {
     try {
         await conn.authenticate();
         console.log('Connection successfully established with the database...');
-        await conn.sync({ force: false });
+        await conn.sync({ force: true });
         server.listen(PORT, () => {
             console.log(`Server listening at ${PORT}`);
           })
