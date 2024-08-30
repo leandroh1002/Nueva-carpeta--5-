@@ -9,10 +9,10 @@ function InfiniteCarreousel() {
   useEffect(() => {
     dispatch(getAllCompanies());
   }, [dispatch]);
-  console.log(allCompanies);
+  //console.log(allCompanies);
 
   return (
-    <div className='flex space-x-16 overflow-hidden group'>
+    <div className='flex space-x-16 overflow-hidden group bg-[#194da0]'>
       <div className='flex space-x-16 animate-loop-scroll group-hover:paused'>
         {allCompanies.map((company, index) => (
           <img
