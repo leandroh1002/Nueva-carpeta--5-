@@ -1,7 +1,4 @@
 import { useEffect, useRef } from "react";
-import Swal from "sweetalert2";
-
-
 
 const UploadWidget = ({ setPublicId }) => {
 
@@ -47,18 +44,6 @@ const UploadWidget = ({ setPublicId }) => {
           const imageUrl = result.info.url;
           console.log(imageUrl)
           setPublicId(imageUrl); 
-          try {
-            // await dispatch(putUserData(newImage))
-          } catch (error) {
-            Swal.fire({
-              title: `${error}`,
-              icon: 'error',
-              // showDenyButton: true,
-              // denyButtonText: 'Cancelar',
-              // confirmButtonText: 'Aceptar',
-              // ConfirmButtonColor: "green",
-            })
-          } 
         }
       }
     );
@@ -66,7 +51,6 @@ const UploadWidget = ({ setPublicId }) => {
   return (
     <div >
       <button 
-      // className={style.editButton} 
       onClick={() => widgetRef.current.open()}>Subir Archivo</button>
     </div>
   );
