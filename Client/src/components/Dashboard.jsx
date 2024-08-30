@@ -1,6 +1,5 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import styles from "./styles/TableUserDue.module.scss"
 import FormMail from './FormMail';
 
 const REACT_APP_API_URL = import.meta.env.VITE_BASE_URL;
@@ -130,7 +129,9 @@ function Dashboard() {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm text-gray-900">
-                     <button className='flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'>Descargar</button>
+                      <a href={person.cv} target='_blank'>
+                        <button className='flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'>Descargar</button>
+                      </a>
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
