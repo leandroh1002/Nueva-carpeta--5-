@@ -10,6 +10,7 @@ import { jwtDecode } from "jwt-decode";
 import Swal from 'sweetalert2';
 import { useDispatch } from 'react-redux';
 import { getUser } from '../redux/actions';
+import Taskscomplete from "../assets/LandingImages/Taskscomplete.svg"
 
 
 function Login() {
@@ -52,11 +53,12 @@ function Login() {
   // }, [navigate]);
 
   return (
-    <div><section className="text-gray-600 body-font bg-[#d3eeff]">
+    <div><section className="  bg-[#d3eeff]">
     <div className="container px-5 py-20 mx-auto flex flex-wrap items-center">
-      <div className="ALFA lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0">
-        <h1 className="title-font font-medium text-3xl text-gray-900">Bienvenido de Nuevo</h1>
+      <div className=" text-left ALFA lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0">
+        <h3 >Bienvenido de Nuevo</h3>
         <p className="leading-relaxed mt-4">Accede a tu cuenta para continuar explorando nuestras oportunidades de pasantías y seguir desarrollando tu carrera profesional. Si aún no tienes una cuenta, ¡regístrate y únete a nuestra comunidad!</p>
+      <img className='w-[428px] h-[395px]' src={Taskscomplete} alt="" />
       </div>
       <Formik
       initialValues={{
@@ -86,7 +88,7 @@ function Login() {
           .then((response) => {
             if (response.status === 201 || response.status === 200) {
               const token = response.data.token;
-              console.log(rememberMe, "remenberMe");
+              //console.log(rememberMe, "remenberMe");
               const decToken = jwtDecode(token);
               localStorage.setItem("token", token);
               const passwordUser = decToken.password;
@@ -95,22 +97,24 @@ function Login() {
                 const decToken = jwtDecode(token);
                 const passwordUser = values.password;
                 const email = values.email;
-                console.log(
+                /*console.log(
                   "Email y password recibida del servidor:",
                   email,
                   passwordUser,
-                  decToken.idPeople
-                );
+                  decToken.idPeople,
+                  decToken.idCarrer
+                );*/
                 localStorage.setItem(StoreItem.passwordUser, JSON.stringify(passwordUser));
+                localStorage.setItem(StoreItem.idCarrer, JSON.stringify(decToken.idCarrer));
                 localStorage.setItem(StoreItem.idPeople, JSON.stringify(decToken.idPeople));
                 localStorage.setItem(StoreItem.email, JSON.stringify(email));
               }
               const idLocalStorage = JSON.parse(localStorage.getItem("idPeople"));
               dispatch(getUser(idLocalStorage))
-              navigate("/home");
+              navigate(PATHROUTES.HOME);
               setSuccess(true);
               resetForm();
-              console.log(response)
+              //console.log(response)
               setTimeout(() => setSuccess(false), 5000);
             }
           })
@@ -120,7 +124,7 @@ function Login() {
       }}
       >
         {({ errors }) => (
-      <Form className="lg:w-2/6 md:w-1/2 bg-gray-100 rounded-lg p-8 pb-4 flex flex-col md:m-auto w-full mt-10 md:mt-0">
+      <Form className="lg:w-2/6 md:w-1/2 bg-gray-100 rounded-lg p-8 pb-4 flex flex-col md:m-auto w-full mt-10 md:mt-18">
         <h2 className="text-gray-900 text-lg font-medium title-font mb-5">Sign Up</h2>
         <div className="relative mb-4">
               <label htmlFor="email" className="leading-7 text-sm text-gray-600">Email: </label>
