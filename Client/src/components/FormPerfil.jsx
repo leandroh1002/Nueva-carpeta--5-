@@ -11,7 +11,6 @@ const REACT_APP_API_URL = import.meta.env.VITE_BASE_URL;
 
 function FormPerfil() {
   const userLoggedInfo = useSelector(state => state.UserLogued);
-  console.log("usuario logueado", userLoggedInfo);
 
   return (
     <>
@@ -101,7 +100,6 @@ function FormPerfil() {
           return errors;
         }}
         onSubmit={(values) => {
-          console.log("valores ",values);
           axios.put(`${REACT_APP_API_URL}/people`, values)
             .then((response) => {
               if (response.status === 201 || response.status === 200) {
@@ -119,7 +117,6 @@ function FormPerfil() {
                 confirmButtonText: 'Volver'
               });
             });
-          console.log(values)
         }}
       >
 
