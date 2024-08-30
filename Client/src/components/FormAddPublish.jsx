@@ -18,7 +18,6 @@ function FormAddPublish() {
       dispatch(getAllCarrer());
       dispatch(getAllCompanies());
   }, [dispatch]);
-  console.log(allCarrers)
   
   return (
     <>
@@ -68,14 +67,14 @@ function FormAddPublish() {
           // Validación de la requirement
           if (!values.requirement) {
             errors.requirement = 'Ingrese los requerimientos mínimos de la postulación';
-          } else if (!/^[a-zA-ZÀ-ÿ\s.,;:!?()\-\t•]{1,3000}$/.test(values.requirement)) {
+          } else if (!/^[a-zA-ZÀ-ÿ/\s.,;:!?()\-\t•]{1,3000}$/.test(values.requirement)) {
             errors.requirement = 'La descripción no puede tener más de 40 caracteres';
           }
 
           // Validación de la offer
           if (!values.offer) {
             errors.offer = 'Ingresa que ofrecen en este puesto';
-          } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(values.offer)) {
+          } else if (!/^[a-zA-ZÀ-ÿ\s.,;:!?()\-\t•]{1,3000}$/.test(values.offer)) {
             errors.offer = 'El departamento solo puede tener Letras y Espacios';
           }
 
@@ -88,8 +87,6 @@ function FormAddPublish() {
           return errors;
         }}
         onSubmit={(values, { resetForm }) => {
-            console.log("valores de companias", values.idCompany)
-            console.log("valores de carreras", values.idCarrer)
           axios.post(`${REACT_APP_API_URL}/publish`, values)
             .then((response) => {
               if (response.status === 201 || response.status === 200) {
@@ -109,7 +106,6 @@ function FormAddPublish() {
                 confirmButtonText: 'Volver'
               });
             });
-        console.log("listo", values)
         }
     }
       >
@@ -147,6 +143,7 @@ function FormAddPublish() {
                 className="w-full bg-white rounded border border-gray-300 focus:border-[#ca7d10] focus:ring-2 focus:ring-[#d9b662] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                 type="text"
                 id="task"
+                as="textarea"
                 name="task"
                 placeholder="task"
               />
@@ -172,6 +169,7 @@ function FormAddPublish() {
                 type="text"
                 id="requirement"
                 name="requirement"
+                as="textarea"
                 placeholder="requirement"
               />
               <ErrorMessage name="requirement" component={() => (<div className="error">{errors.requirement}</div>)} />
