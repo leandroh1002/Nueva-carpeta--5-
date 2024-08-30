@@ -6,7 +6,7 @@ const getAllPublishController = async (req, res) => {
             include: [
                 {
                     model: People,
-                    attributes: ['idPeople', 'fullName', 'aboutMe', 'yearsOfCarrer', 'email', 'email' ],
+                    attributes: ['idPeople', 'fullName', 'aboutMe', 'yearsOfCarrer', 'email', 'cv' ],
                     include: [
                         {
                             model: Carrer,
