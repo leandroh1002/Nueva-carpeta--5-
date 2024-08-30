@@ -6,13 +6,16 @@ const getPublishFiltered = async (req, res) => {
         const filteredPublishes = await Publish.findAll({
             where: { isDeleted: false },
             include: [{
+                model: Companies,
+                attributes: ['idCompanies', 'name', 'description', 'image', 'duration']
+            },{
                 model: Carrer,
                 where: { idCarrer },
             }]
         });
 
         if (filteredPublishes.length === 0) {
-            return res.status(404).json({ message: 'No se encontraron publicaciones con esa carrera' });
+            return res.status(200).json({ message: 'No se encontraron publicaciones con esa carrera' });
         }
 
         res.status(200).json(filteredPublishes);
