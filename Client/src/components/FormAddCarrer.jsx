@@ -53,19 +53,28 @@ function FormAddCompanies() {
         onSubmit={(values, { resetForm }) => {
           axios.post(`${REACT_APP_API_URL}/carrer`, values)
             .then((response) => {
-              if (response.status === 201 || response.status === 200) {
+              console.log(response);
+              
+              if (response.status === 201) {
                 Swal.fire({
                   title: "Carrera Agregada Correctamente",
                   icon: 'success',
                   confirmButtonText: 'Aceptar'
                 });
                 resetForm();
+              } else if (response.status === 200) {
+                Swal.fire({
+                  title: `${response.data.message}`,
+                  icon: 'warning',
+                  confirmButtonText: 'Aceptar'
+                });
               }
+              
             })
             .catch((error) => {
               console.log(error);
               Swal.fire({
-                title: "Verifique los valores del formulario nuevamente",
+                title: `${error.response.data.error}`,
                 icon: 'warning',
                 confirmButtonText: 'Volver'
               });
@@ -104,10 +113,17 @@ function FormAddCompanies() {
               <Field
                 className="w-full bg-white rounded border border-gray-300 focus:border-[#ca7d10] focus:ring-2 focus:ring-[#d9b662] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                 type="text"
+                as="select"
                 id="department"
                 name="department"
                 placeholder="Ej. Ingeniería"
-              />
+              >
+                  <option value="Economía y Administración'">Economía y Administración</option>
+                  <option value="'Ciencias de la salud">Ciencias de la salud</option>
+                  <option value="Ingenieria">Ingenieria</option>
+                  <option value="Humanidades">Humanidades</option>
+                  <option value="'Ciencias Juridicas, Politicas y sociales">'Ciencias Juridicas, Politicas y sociales</option>
+              </Field>
               <ErrorMessage name="department" component={() => (<div className="error">{errors.department}</div>)} />
             </div>
 
