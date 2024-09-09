@@ -46,7 +46,7 @@ function Dashboard() {
           onChange={handleSelectChange}
           className="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
         >
-          <option value="">Select a publish</option>
+          <option value="">Selecciona una publicacion</option>
           {data.map((item) => (
             <option key={item.idPublish} value={item.idPublish}>
               {item.namePublish}
