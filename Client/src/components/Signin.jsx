@@ -105,7 +105,7 @@ function Signin() {
           .catch((error) => {
             console.log(error);
             Swal.fire({
-              title: "Verifique los valores del formulario nuevamente",
+              title: `${error.response.data.error}`,
               icon: 'warning',
               confirmButtonText: 'Volver'
             });
