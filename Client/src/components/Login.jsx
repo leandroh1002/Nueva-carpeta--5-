@@ -86,6 +86,8 @@ function Login() {
       onSubmit={(values, { resetForm }) => {
         axios.post(`${REACT_APP_API_URL}/login`, values)
           .then((response) => {
+            console.log("aaaaaaaaaaa",response.data.message);
+            
             if (response.status === 201 || response.status === 200) {
               const token = response.data.token;
               //console.log(rememberMe, "remenberMe");
@@ -115,6 +117,12 @@ function Login() {
               setSuccess(true);
               resetForm();
               //console.log(response)
+              Swal.fire({
+                title: `${response.data.message}`,
+                text: "",
+                icon: 'success',
+                confirmButtonText: 'Aceptar'
+              });
             }
           })
           .catch((error) => {
