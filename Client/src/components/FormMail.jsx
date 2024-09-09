@@ -39,8 +39,7 @@ function FormMail({ handleShowForm, email }) {
         }
       } catch (error) {
         Swal.fire({
-          title: `${error}`,
-          text: "Error al enviar el correo electrónico",
+          title: `${error.response.data.error}`,
           icon: 'error',
           confirmButtonText: 'Aceptar'
         });
