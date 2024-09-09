@@ -115,7 +115,6 @@ function Login() {
               setSuccess(true);
               resetForm();
               //console.log(response)
-              setTimeout(() => setSuccess(false), 5000);
             }
           })
           .catch((error) => {
