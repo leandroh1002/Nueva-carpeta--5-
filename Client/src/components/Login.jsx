@@ -119,7 +119,13 @@ function Login() {
             }
           })
           .catch((error) => {
-            console.log(error);
+            console.log(error.response.data);
+            Swal.fire({
+              title: `${error.response.data.error}`,
+              text: "",
+              icon: 'warning',
+              confirmButtonText: 'Aceptar'
+            });
           });
       }}
       >
@@ -151,7 +157,7 @@ function Login() {
             {/* <div>
             <label><input type="checkbox" id="cbox1" value="first_checkbox" /> Recordar</label>
             </div> */}
-            <ButtonDefault type="submit" props="Iniciar Sesion"></ButtonDefault>
+            <ButtonDefault id="iniciarSesion" type="submit" props="Iniciar Sesion"></ButtonDefault>
         <p className="text-xs text-gray-500 mt-3">Tu cuenta en autogestion debe estar accesible.</p><Link className='p-2' to={PATHROUTES.SIGNIN}>Register</Link>
         </Form>)}
       </Formik>
