@@ -120,7 +120,7 @@ function FormAddPublish() {
                 type="text"
                 id="namePublish"
                 name="namePublish"
-                placeholder="namePublish"
+                placeholder="Ingresa el título de la pasantía o el nombre de la posición..."
               />
               <ErrorMessage name="namePublish" component={() => (<div className="error">{errors.namePublish}</div>)} />
             </div>
@@ -131,8 +131,9 @@ function FormAddPublish() {
                 className="w-full bg-white rounded border border-gray-300 focus:border-[#ca7d10] focus:ring-2 focus:ring-[#d9b662] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                 type="description"
                 id="description"
+                as="textarea"
                 name="description"
-                placeholder="description"
+                placeholder="Describe brevemente en qué consiste la pasantía..."
               />
               <ErrorMessage name="description" component={() => (<div className="error">{errors.description}</div>)} />
             </div>
@@ -145,7 +146,7 @@ function FormAddPublish() {
                 id="task"
                 as="textarea"
                 name="task"
-                placeholder="task"
+                placeholder="Detalla las principales responsabilidades y tareas que realizará el pasante..."
               />
               <ErrorMessage name="task" component={() => (<div className="error">{errors.task}</div>)} />
             </div>
@@ -158,7 +159,7 @@ function FormAddPublish() {
                 as="textarea"
                 id="perfil"
                 name="perfil"
-                placeholder="perfil"
+                placeholder="Indica el perfil ideal del candidato (habilidades, estudios, experiencia)..."
               />
               <ErrorMessage name="perfil" component={() => (<div className="error">{errors.perfil}</div>)} />
             </div>
@@ -171,7 +172,7 @@ function FormAddPublish() {
                 id="requirement"
                 name="requirement"
                 as="textarea"
-                placeholder="requirement"
+                placeholder="Lista los requisitos mínimos que debe cumplir el postulante..."
               />
               <ErrorMessage name="requirement" component={() => (<div className="error">{errors.requirement}</div>)} />
             </div>
@@ -181,9 +182,10 @@ function FormAddPublish() {
               <Field
                 className="w-full bg-white rounded border border-gray-300 focus:border-[#ca7d10] focus:ring-2 focus:ring-[#d9b662] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                 type="text"
+                as="textarea"
                 id="offer"
                 name="offer"
-                placeholder="offer"
+                placeholder="Describe los beneficios y oportunidades que se ofrecen al pasante..."
               />
               <ErrorMessage name="offer" component={() => (<div className="error">{errors.offer}</div>)} />
             </div>
@@ -195,7 +197,7 @@ function FormAddPublish() {
                 type="text"
                 id="location"
                 name="location"
-                placeholder="location"
+                placeholder="Especifica la ubicación física de la pasantía o si es remota..."
               />
               <ErrorMessage name="location" component={() => (<div className="error">{errors.location}</div>)} />
             </div>
