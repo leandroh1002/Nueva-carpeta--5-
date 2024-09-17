@@ -68,14 +68,14 @@ function FormAddPublish() {
           if (!values.requirement) {
             errors.requirement = 'Ingrese los requerimientos mínimos de la postulación';
           } else if (!/^[a-zA-ZÀ-ÿ/\s.,;:!?()\-\t•]{1,3000}$/.test(values.requirement)) {
-            errors.requirement = 'La descripción no puede tener más de 40 caracteres';
+            errors.requirement = 'Los requisitos no puede tener más de 3000 caracteres';
           }
 
           // Validación de la offer
           if (!values.offer) {
             errors.offer = 'Ingresa que ofrecen en este puesto';
-          } else if (!/^[a-zA-ZÀ-ÿ\s.,;:!?()\-\t•]{1,3000}$/.test(values.offer)) {
-            errors.offer = 'El departamento solo puede tener Letras y Espacios';
+          } else if (values.offer.length > 3000) {
+            errors.offer = 'Los requisitos no puede tener más de 3000 caracteres';
           }
 
           // Validación de la location
