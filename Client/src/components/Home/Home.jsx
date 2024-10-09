@@ -47,7 +47,7 @@ function Home(valueId) {
       <InfiniteCarreousel/>
       <Objetives/>
       <div id='tarjetas' className={style.card}>
-        <h5 id='nuestrasPasantias' className='mb-24 text-[#E5EFFF] '>Nuestras pasantías</h5>
+        <h5 id='nuestrasPasantias' className='mb-24 mt-24 text-[#E5EFFF] '>Nuestras pasantías</h5>
         <div className='flex w-[80%] justify-evenly flex-wrap'>
           {Array.isArray(allPublishes) && allPublishes.length > 0 ? (
             allPublishes.map((user, index) => (
