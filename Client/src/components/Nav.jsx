@@ -62,7 +62,7 @@ export default function Example({ isAdmin, imagePerfil }) {
                   )}
                 </DisclosureButton>
               </div>
-              <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+              <div className="flex flex-1 items-center justify-center  sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
                   <Link to={isAdmin === undefined ? `${PATHROUTES.LANDING}` : `${PATHROUTES.HOME}`}>
                   <img
@@ -71,7 +71,7 @@ export default function Example({ isAdmin, imagePerfil }) {
                     alt="Your Company"
                   /></Link>
                 </div>
-                <div className="hidden sm:ml-6 sm:block">
+                <div className="hidden sm:ml-6 sm:block sm:items-center">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
                       <a
@@ -125,7 +125,7 @@ export default function Example({ isAdmin, imagePerfil }) {
                       <MenuItems className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                         {isAdmin ? (
                           <>
-                            <MenuItem>
+                            <MenuItem button-dashboard-id="dashboard">
                               {({ active }) => (
                                 <Link to={PATHROUTES.DASHBOARD}>
                                   <a
@@ -139,7 +139,7 @@ export default function Example({ isAdmin, imagePerfil }) {
                                 </Link>
                               )}
                             </MenuItem>
-                            <MenuItem>
+                            <MenuItem button-newPublish-id="newPublish">
                               {({ active }) => (
                                 <Link to={PATHROUTES.PUBLISH}>
                                   <a
@@ -153,7 +153,7 @@ export default function Example({ isAdmin, imagePerfil }) {
                                 </Link>
                               )}
                             </MenuItem>
-                            <MenuItem>
+                            <MenuItem button-newCompanie-id="newCompanie">
                               {({ active }) => (
                                 <Link to={PATHROUTES.FORM_ADD_COMPANIES}>
                                   <a
@@ -167,7 +167,7 @@ export default function Example({ isAdmin, imagePerfil }) {
                                 </Link>
                               )}
                             </MenuItem>
-                            <MenuItem>
+                            <MenuItem button-newCarrer-id="newCarrer">
                               {({ active }) => (
                                 <Link to={PATHROUTES.FORM_ADD_CARRER}>
                                   <a
