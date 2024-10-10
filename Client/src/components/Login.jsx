@@ -154,7 +154,7 @@ function Login() {
               <label htmlFor="password" className="leading-7 text-sm text-gray-600">Password: </label>
               <Field
                 className="w-full bg-white rounded border border-gray-300 focus:border-[#ca7d10] focus:ring-2 focus:ring-[#d9b662] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                type="text"
+                type="password"
                 id="password"
                 name="password"
                 placeholder="Password"

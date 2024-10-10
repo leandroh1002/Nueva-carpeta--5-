@@ -1,8 +1,6 @@
 const { People, Publish } = require("../../db.js");
 
 const postPeoplePublish = async (req, res) => {
-  console.log("Estoy en el signincontroller");
-
   try {
     const { idPublish, value } = req.body;
 
@@ -25,7 +23,6 @@ const postPeoplePublish = async (req, res) => {
     
     res.status(201).json({ message: "Usuario creado exitosamente" });
   } catch (error) {
-    console.error("Error en el registro:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };

@@ -12,7 +12,7 @@ function InfiniteCarreousel() {
   //console.log(allCompanies);
 
   return (
-    <div className='flex space-x-16 overflow-hidden group bg-[#194da0]'>
+    <div id='carrousel' className='flex space-x-16 overflow-hidden group bg-[#194da0]'>
       <div className='flex space-x-16 animate-loop-scroll group-hover:paused'>
         {allCompanies.map((company, index) => (
           <img

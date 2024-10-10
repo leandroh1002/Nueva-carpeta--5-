@@ -10,7 +10,7 @@ const postCarrerController = async (req, res) => {
     if (created) {
       res.status(201).json(newCarrer);
     } else {
-      res.status(200).json({ message: "La compañía ya existe", company: newCarrer });
+      res.status(200).json({ message: "La carrera ya existe", company: newCarrer });
     }
   } catch (error) {
     console.error(error);
