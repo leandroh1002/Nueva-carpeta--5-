@@ -31,7 +31,7 @@ function FormAddCompanies() {
           // Validación de la description
           if (!values.description) {
             errors.description = 'Ingresa una descripción';
-          } else if (values.description.length > 55) {
+          } else if (values.description.length > 300) {
             errors.description = 'La descripción no puede tener más de 40 caracteres';
           }
 
