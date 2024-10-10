@@ -96,12 +96,12 @@ function Dashboard() {
                 >
                   Enviar Mail
                 </th>
-                <th
+                {/* <th
                   scope="col"
                   className="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider"
                 >
                   Visto
-                </th>
+                </th> */}
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
@@ -143,16 +143,7 @@ function Dashboard() {
                       }}>Enviar email</button>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-900">
-                    <input
-                      id="comments"
-                      name="comments"
-                      type="checkbox"
-                      className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                    />
-                    </div>
-                  </td>
+                  
                 </tr>
               ))}
             </tbody>
